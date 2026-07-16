@@ -18,3 +18,14 @@
   align-items: center;
   gap: 16px;
 }
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+}
+
+.navbar-separator {
+  color: #c7c6ca;
+}

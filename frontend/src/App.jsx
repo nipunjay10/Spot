@@ -19,7 +19,7 @@ function App() {
       // only store the user if the session is still valid
       if (res.ok) {
         const user = await res.json();
-        setCurrentUser(user);
+        setCurrentUser(user); // user contains the logged-in user's info (id, username, displayName)
       }
       setLoading(false);
     }
@@ -27,7 +27,7 @@ function App() {
     loadCurrentUser();
   }, []);
 
-  // * This function is passed down to the NavBar and called when the user clicks "Logout". 
+  // * This function is passed down to the NavBar and called when the user clicks "Logout".
   async function handleLogout() {
     // tell the server to end the session
     await fetch("/api/auth/logout", { method: "POST" });
@@ -39,7 +39,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-        // wrap all the pages in the Layout component so the nav bar is always visible
+          // wrap all the pages in the Layout component so the nav bar is always visible
           element={
             <Layout
               currentUser={currentUser}
@@ -48,7 +48,10 @@ function App() {
             />
           }
         >
-          <Route path="/login" element={<LoginPage onLogin={setCurrentUser} />} />
+          <Route
+            path="/login"
+            element={<LoginPage onLogin={setCurrentUser} />}
+          />
           <Route
             path="/register"
             element={<RegisterPage onRegister={setCurrentUser} />}

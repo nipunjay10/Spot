@@ -25,6 +25,11 @@ function NavBar({ currentUser, loading, onLogout }) {
       <div className="navbar-links">
         {currentUser ? (
           <>
+            {/* display current user name or displayName */}
+            <span className="navbar-user">
+              Hi, {currentUser.displayName || currentUser.username}
+            </span>
+            <span className="navbar-separator">|</span>
             <Link to="/">Dashboard</Link>
             <Link to="/search">Find a Partner</Link>
             <Link to="/profile">Profile</Link>

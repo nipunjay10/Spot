@@ -11,6 +11,8 @@ import prettierConfig from "eslint-config-prettier";
 // adds the React-specific rule sets, and hooks up Prettier so
 // formatting issues show up as lint errors too.
 export default [
+  // don't lint build output — it's generated, minified code we don't own
+  { ignores: ["dist/**"] },
   js.configs.recommended,
   react.configs.flat.recommended,
   react.configs.flat["jsx-runtime"],

@@ -2,3 +2,26 @@
   max-width: 400px;
   margin: 0 auto;
 }
+
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-page input {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.login-page button {
+  margin-top: 8px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-error {
+  color: #c0392b;
+  margin: 0;
+}
