@@ -9,6 +9,7 @@
     "seed:users": "node seed/loadUsers.js",
     "seed:sessions": "node seed/loadSessions.js",
     "seed:challenges": "node seed/loadChallenges.js",
+    "seed:pacts": "node seed/loadPacts.js",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
