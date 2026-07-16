@@ -21,6 +21,9 @@ export default [
     },
     rules: {
       "prettier/prettier": "error",
+      // allows `const { secretField, ...rest } = obj` to drop a field
+      // without ESLint complaining that `secretField` is unused
+      "no-unused-vars": ["error", { ignoreRestSiblings: true }],
     },
   },
   prettierConfig,
