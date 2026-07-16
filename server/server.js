@@ -11,6 +11,7 @@ import sessionsRouter from "./routes/sessions.js";
 import challengesRouter from "./routes/challenges.js";
 import pactsRouter from "./routes/pacts.js";
 import authRouter from "./routes/auth.js";
+import usersRouter from "./routes/users.js";
 
 const app = express();
 
@@ -52,12 +53,15 @@ app.use(
 );
 // -------- -------- -------- -------- -------- --------
 
-
 // passport reads/writes req.session, so it's set up after session()
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/auth", authRouter);
+
+// users routes need to know who's logged in (search excludes yourself,
+// edit/delete are self-only), so they require login too
+app.use("/api/users", ensureAuthenticated, usersRouter);
 
 // wired in session routes
 app.use("/api/sessions", sessionsRouter);
