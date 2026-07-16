@@ -1,5 +1,5 @@
-import { connectDB } from '../db/connection.js';
-import { ObjectId } from 'mongodb';
+import { connectDB } from "../db/connection.js";
+import { ObjectId } from "mongodb";
 
 // Returns the Monday and Sunday of the current week as ISO date strings
 function getCurrentWeekRange() {
@@ -22,7 +22,7 @@ function getCurrentWeekRange() {
 
 // Counts a user's sessions within a date range (inclusive)
 async function countSessionsInRange(db, userId, start, end) {
-  return db.collection('sessions').countDocuments({
+  return db.collection("sessions").countDocuments({
     userId: new ObjectId(userId),
     date: { $gte: start, $lte: end },
   });
@@ -31,8 +31,10 @@ async function countSessionsInRange(db, userId, start, end) {
 // Checks one pact against this week's sessions, updates the streak, returns the result
 async function evaluatePact(pactId) {
   const db = await connectDB();
-  const pact = await db.collection('pacts').findOne({ _id: new ObjectId(pactId) });
-  if (!pact) throw new Error('Pact not found');
+  const pact = await db
+    .collection("pacts")
+    .findOne({ _id: new ObjectId(pactId) });
+  if (!pact) throw new Error("Pact not found");
 
   const { start, end } = getCurrentWeekRange();
 
@@ -41,15 +43,25 @@ async function evaluatePact(pactId) {
     countSessionsInRange(db, pact.partnerB, start, end),
   ]);
 
-  const bothHitTarget = countA >= pact.weeklyTarget && countB >= pact.weeklyTarget;
+  const bothHitTarget =
+    countA >= pact.weeklyTarget && countB >= pact.weeklyTarget;
   const newStreak = bothHitTarget ? pact.currentStreak + 1 : 0;
 
-  await db.collection('pacts').updateOne(
-    { _id: new ObjectId(pactId) },
-    { $set: { currentStreak: newStreak } }
-  );
+  await db
+    .collection("pacts")
+    .updateOne(
+      { _id: new ObjectId(pactId) },
+      { $set: { currentStreak: newStreak } },
+    );
 
-  return { pactId, countA, countB, weeklyTarget: pact.weeklyTarget, streak: newStreak, cleared: bothHitTarget };
+  return {
+    pactId,
+    countA,
+    countB,
+    weeklyTarget: pact.weeklyTarget,
+    streak: newStreak,
+    cleared: bothHitTarget,
+  };
 }
 
 export { evaluatePact, getCurrentWeekRange };

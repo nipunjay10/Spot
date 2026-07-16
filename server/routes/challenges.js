@@ -1,13 +1,12 @@
-import express from 'express';
+import express from "express";
 const router = express.Router();
-import { connectDB } from '../db/connection.js';
-import { ObjectId } from 'mongodb';
+import { connectDB } from "../db/connection.js";
+import { ObjectId } from "mongodb";
 
 // CRUD operations for challenges
 
-
 // CREATE a challenge
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const db = await connectDB();
     const challenge = {
@@ -16,11 +15,11 @@ router.post('/', async (req, res) => {
       description: req.body.description,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      status: 'open',
+      status: "open",
       proofEntries: [],
       createdAt: new Date(),
     };
-    const result = await db.collection('challenges').insertOne(challenge);
+    const result = await db.collection("challenges").insertOne(challenge);
     res.status(201).json({ _id: result.insertedId, ...challenge });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -28,13 +27,13 @@ router.post('/', async (req, res) => {
 });
 
 // READ all open challenges (the public feed)
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const db = await connectDB();
     const status = req.query.status; // optional filter, e.g. ?status=open
     const filter = status ? { status } : {};
     const challenges = await db
-      .collection('challenges')
+      .collection("challenges")
       .find(filter)
       .sort({ createdAt: -1 })
       .toArray();
@@ -45,43 +44,54 @@ router.get('/', async (req, res) => {
 });
 
 // ACCEPT a challenge
-router.put('/:id/accept', async (req, res) => {
+router.put("/:id/accept", async (req, res) => {
   try {
     const db = await connectDB();
-    const challenge = await db.collection('challenges')
+    const challenge = await db
+      .collection("challenges")
       .findOne({ _id: new ObjectId(req.params.id) });
 
-    if (!challenge) return res.status(404).json({ error: 'Challenge not found' });
-    if (challenge.status !== 'open') {
-      return res.status(400).json({ error: 'Challenge is not open' });
+    if (!challenge)
+      return res.status(404).json({ error: "Challenge not found" });
+    if (challenge.status !== "open") {
+      return res.status(400).json({ error: "Challenge is not open" });
     }
 
-    await db.collection('challenges').updateOne(
+    await db.collection("challenges").updateOne(
       { _id: new ObjectId(req.params.id) },
-      { $set: { accepterId: new ObjectId(req.body.accepterId), status: 'accepted' } }
+      {
+        $set: {
+          accepterId: new ObjectId(req.body.accepterId),
+          status: "accepted",
+        },
+      },
     );
-    res.json({ message: 'Challenge accepted' });
+    res.json({ message: "Challenge accepted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 // LOG a proof entry
-router.post('/:id/proof', async (req, res) => {
+router.post("/:id/proof", async (req, res) => {
   try {
     const db = await connectDB();
-    const challenge = await db.collection('challenges')
+    const challenge = await db
+      .collection("challenges")
       .findOne({ _id: new ObjectId(req.params.id) });
 
-    if (!challenge) return res.status(404).json({ error: 'Challenge not found' });
-    if (challenge.status !== 'accepted') {
-      return res.status(400).json({ error: 'Challenge must be accepted first' });
+    if (!challenge)
+      return res.status(404).json({ error: "Challenge not found" });
+    if (challenge.status !== "accepted") {
+      return res
+        .status(400)
+        .json({ error: "Challenge must be accepted first" });
     }
 
     const newEntry = {
       date: req.body.date,
       completed: req.body.completed,
-      notes: req.body.notes || '',
+      notes: req.body.notes || "",
     };
 
     const updatedEntries = [...challenge.proofEntries, newEntry];
@@ -90,16 +100,18 @@ router.post('/:id/proof', async (req, res) => {
     let newStatus = challenge.status;
     if (req.body.date === challenge.endDate) {
       const allCompleted = updatedEntries.every((entry) => entry.completed);
-      newStatus = allCompleted ? 'completed' : 'failed';
+      newStatus = allCompleted ? "completed" : "failed";
     } else if (!req.body.completed) {
       // missing a day early fails it immediately — no point continuing
-      newStatus = 'failed';
+      newStatus = "failed";
     }
 
-    await db.collection('challenges').updateOne(
-      { _id: new ObjectId(req.params.id) },
-      { $set: { proofEntries: updatedEntries, status: newStatus } }
-    );
+    await db
+      .collection("challenges")
+      .updateOne(
+        { _id: new ObjectId(req.params.id) },
+        { $set: { proofEntries: updatedEntries, status: newStatus } },
+      );
 
     res.json({ proofEntries: updatedEntries, status: newStatus });
   } catch (err) {
@@ -108,16 +120,16 @@ router.post('/:id/proof', async (req, res) => {
 });
 
 // DELETE a challenge
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const db = await connectDB();
     const result = await db
-      .collection('challenges')
+      .collection("challenges")
       .deleteOne({ _id: new ObjectId(req.params.id) });
     if (result.deletedCount === 0) {
-      return res.status(404).json({ error: 'Challenge not found' });
+      return res.status(404).json({ error: "Challenge not found" });
     }
-    res.json({ message: 'Challenge deleted' });
+    res.json({ message: "Challenge deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

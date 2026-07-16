@@ -1,12 +1,12 @@
-import express from 'express';
-import session from 'express-session';
-import { connectDB } from './db/connection.js';
-import dotenv from 'dotenv';
+import express from "express";
+import session from "express-session";
+import { connectDB } from "./db/connection.js";
+import dotenv from "dotenv";
 dotenv.config();
 
-import sessionsRouter from './routes/sessions.js';
-import challengesRouter from './routes/challenges.js';
-import pactsRouter from './routes/pacts.js';
+import sessionsRouter from "./routes/sessions.js";
+import challengesRouter from "./routes/challenges.js";
+import pactsRouter from "./routes/pacts.js";
 
 const app = express();
 
@@ -14,23 +14,25 @@ const app = express();
 app.use(express.json()); // lets us read req.body as JSON
 
 // session middleware must come before any router that needs req.session
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 // wired in session routes
-app.use('/api/sessions', sessionsRouter);
+app.use("/api/sessions", sessionsRouter);
 
 // wired in challenge routes
-app.use('/api/challenges', challengesRouter);
+app.use("/api/challenges", challengesRouter);
 
-app.use('/api/pacts', pactsRouter);
+app.use("/api/pacts", pactsRouter);
 
 // Test route — just to prove the server is alive
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok' });
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
 const PORT = process.env.PORT || 3001;
