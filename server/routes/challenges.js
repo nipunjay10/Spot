@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { connectDB } = require('../db/connection');
-const { ObjectId } = require('mongodb');
+import { connectDB } from '../db/connection.js';
+import { ObjectId } from 'mongodb';
 
 // CRUD operations for challenges
 
@@ -123,4 +123,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

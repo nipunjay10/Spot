@@ -1,7 +1,8 @@
 // TEST PACT - KHUSH WILL DELETE AND ADD HIS OWN AFTER TESTING
 
-const { MongoClient, ObjectId } = require('mongodb');
-require('dotenv').config();
+import { MongoClient, ObjectId } from 'mongodb';
+import dotenv from 'dotenv';
+dotenv.config();
 
 async function insertTestPact() {
   const client = new MongoClient(process.env.MONGO_URI);

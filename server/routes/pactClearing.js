@@ -1,5 +1,5 @@
-const { connectDB } = require('../db/connection');
-const { ObjectId } = require('mongodb');
+import { connectDB } from '../db/connection.js';
+import { ObjectId } from 'mongodb';
 
 // Returns the Monday and Sunday of the current week as ISO date strings
 function getCurrentWeekRange() {
@@ -52,4 +52,4 @@ async function evaluatePact(pactId) {
   return { pactId, countA, countB, weeklyTarget: pact.weeklyTarget, streak: newStreak, cleared: bothHitTarget };
 }
 
-module.exports = { evaluatePact, getCurrentWeekRange };
+export { evaluatePact, getCurrentWeekRange };

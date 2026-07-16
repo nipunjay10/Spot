@@ -1,9 +1,9 @@
 // TEMP ROUTE FILE FOR TESTING PURPOSES ONLY - KHUSH WILL CHANGE 
 
 
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { evaluatePact } = require('./pactClearing');
+import { evaluatePact } from './pactClearing.js';
 
 // Manually trigger evaluation of a pact (later this could run on a schedule)
 router.post('/:id/evaluate', async (req, res) => {
@@ -15,4 +15,4 @@ router.post('/:id/evaluate', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

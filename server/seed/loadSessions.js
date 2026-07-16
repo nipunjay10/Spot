@@ -1,7 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const { MongoClient, ObjectId } = require('mongodb');
-require('dotenv').config();
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { MongoClient, ObjectId } from 'mongodb';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function loadSessions() {
   const client = new MongoClient(process.env.MONGO_URI);

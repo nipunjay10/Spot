@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { connectDB } = require('../db/connection');
-const { ObjectId } = require('mongodb');
+import { connectDB } from '../db/connection.js';
+import { ObjectId } from 'mongodb';
 
 // CRUD operations for sessions
 
@@ -112,4 +112,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
