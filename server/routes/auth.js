@@ -70,8 +70,10 @@ router.post("/login", (req, res, next) => {
 
 // LOGOUT the current user
 router.post("/logout", (req, res) => {
+  // req.logout() is provided by Passport — it removes the user from the session
   req.logout((err) => {
     if (err) return res.status(500).json({ error: err.message });
+    // this destroys the session on the server, so the cookie in the browser is no longer valid
     req.session.destroy(() => {
       res.json({ message: "Logged out" });
     });
@@ -80,6 +82,8 @@ router.post("/logout", (req, res) => {
 
 // GET the currently logged-in user
 router.get("/me", (req, res) => {
+  // this route is used by the frontend to check if the user is logged in and get their profile
+  // req.isAuthenticated() is provided by Passport — it returns true if the user is logged in
   if (!req.isAuthenticated()) {
     return res.status(401).json({ error: "Not logged in" });
   }

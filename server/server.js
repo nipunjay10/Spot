@@ -1,11 +1,16 @@
 import express from "express";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import path from "path";
+import { fileURLToPath } from "url";
 import { connectDB } from "./db/connection.js";
 import passport from "./auth/passport.js";
 import { ensureAuthenticated } from "./middleware/ensureAuthenticated.js";
 import dotenv from "dotenv";
 dotenv.config();
+
+// __dirname isn't available in ES modules, so we rebuild it from the file's own URL
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 import sessionsRouter from "./routes/sessions.js";
 import challengesRouter from "./routes/challenges.js";
@@ -75,6 +80,17 @@ app.use("/api/pacts", ensureAuthenticated, pactsRouter);
 // Test route — just to prove the server is alive
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok" });
+});
+
+// serve the built React app's static files (JS, CSS, images)
+// calls next() if the file isn't found, so React Router can handle client-side routes
+const frontendDist = path.join(__dirname, "..", "frontend", "dist");
+app.use(express.static(frontendDist));
+
+// any route that isn't an API route falls back to index.html, so React
+// Router can handle client-side routes like /pacts/:id on a page refresh
+app.get("*splat", (req, res) => {
+  res.sendFile(path.join(frontendDist, "index.html"));
 });
 
 const PORT = process.env.PORT || 3001;
