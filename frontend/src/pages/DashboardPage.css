@@ -2,3 +2,9 @@
   max-width: 800px;
   margin: 0 auto;
 }
+
+.pact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
