@@ -29,7 +29,7 @@ function DashboardPage() {
 
   return (
     <div className="dashboard-page">
-      <h1>Dashboard</h1>
+      <h1>Pacts</h1>
 
       {pacts.length === 0 ? (
         <p>
