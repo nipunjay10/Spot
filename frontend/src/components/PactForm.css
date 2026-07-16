@@ -1,0 +1,33 @@
+.pact-form {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.pact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pact-form select {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.pact-form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.pact-form-actions button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pact-form-error {
+  color: #c0392b;
+  margin: 0;
+}

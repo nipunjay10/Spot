@@ -1,4 +1,38 @@
 .partner-search-page {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
+}
+
+.search-header {
+  margin-bottom: 16px;
+}
+
+.search-header form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-header input {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.search-header button {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.search-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
