@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -56,10 +57,38 @@ function App() {
             path="/register"
             element={<RegisterPage onRegister={setCurrentUser} />}
           />
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/search" element={<PartnerSearchPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/pacts/:id" element={<PactDetailPage />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute currentUser={currentUser} loading={loading}>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <ProtectedRoute currentUser={currentUser} loading={loading}>
+                <PartnerSearchPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute currentUser={currentUser} loading={loading}>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/pacts/:id"
+            element={
+              <ProtectedRoute currentUser={currentUser} loading={loading}>
+                <PactDetailPage />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>
