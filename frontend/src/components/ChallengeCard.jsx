@@ -20,6 +20,9 @@ function ChallengeCard({ challenge, currentUser, onChanged }) {
 
   // the creator can delete their own challenge, but can't accept it
   const isCreator = challenge.creatorId === currentUser._id;
+  const isAccepter = challenge.accepterId === currentUser._id;
+  // plenty of challenges are between two other people, so only claim a role we actually have
+  const showRole = challenge.status !== "open" && (isCreator || isAccepter);
 
   // pull the server's message off a failed response so the user sees why
   async function readError(res, fallback) {
@@ -81,6 +84,11 @@ function ChallengeCard({ challenge, currentUser, onChanged }) {
     <div className="challenge-card">
       <div className="challenge-card-header">
         <strong>{challenge.description}</strong>
+        {showRole && (
+          <span className="challenge-role">
+            {isCreator ? "Posted by you" : "You accepted"}
+          </span>
+        )}
         <span className={`challenge-status status-${challenge.status}`}>
           {challenge.status}
         </span>
@@ -101,34 +109,37 @@ function ChallengeCard({ challenge, currentUser, onChanged }) {
       )}
 
       {/* ACCEPTED: only the accepter logs proof */}
-      {challenge.status === "accepted" &&
-        challenge.accepterId === currentUser._id && (
-          <form className="proof-form" onSubmit={handleLogProof}>
-            <label htmlFor={`proofDate-${challenge._id}`}>Log a day</label>
+      {challenge.status === "accepted" && isAccepter && (
+        <form className="proof-form" onSubmit={handleLogProof}>
+          <label htmlFor={`proofDate-${challenge._id}`}>Log a day</label>
+          <input
+            id={`proofDate-${challenge._id}`}
+            type="date"
+            value={proofDate}
+            onChange={(e) => setProofDate(e.target.value)}
+            required
+          />
+          <label className="proof-completed">
             <input
-              id={`proofDate-${challenge._id}`}
-              type="date"
-              value={proofDate}
-              onChange={(e) => setProofDate(e.target.value)}
-              required
+              type="checkbox"
+              checked={completed}
+              onChange={(e) => setCompleted(e.target.checked)}
             />
-            <label className="proof-completed">
-              <input
-                type="checkbox"
-                checked={completed}
-                onChange={(e) => setCompleted(e.target.checked)}
-              />
-              Completed today
-            </label>
-            <input
-              type="text"
-              placeholder="notes (optional)"
-              value={proofNotes}
-              onChange={(e) => setProofNotes(e.target.value)}
-            />
-            <button type="submit">Log proof</button>
-          </form>
-        )}
+            Completed today
+          </label>
+          <input
+            type="text"
+            placeholder="notes (optional)"
+            value={proofNotes}
+            onChange={(e) => setProofNotes(e.target.value)}
+          />
+          <button type="submit">Log proof</button>
+        </form>
+      )}
+      {/* the creator waits — only the accepter can log proof */}
+      {challenge.status === "accepted" && isCreator && (
+        <p className="challenge-note">Waiting on your partner to log proof</p>
+      )}
 
       {/* show proof entries if any exist */}
       {challenge.proofEntries.length > 0 && (

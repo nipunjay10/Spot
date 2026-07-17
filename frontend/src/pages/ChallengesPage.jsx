@@ -52,11 +52,19 @@ function ChallengesPage({ currentUser }) {
     return null;
   }
 
+  // most challenges are between two other people — these are the ones you're in
+  const isMine = (c) =>
+    c.creatorId === currentUser._id || c.accepterId === currentUser._id;
+
   // split into the three lifecycle sections
+  // open stays the whole feed, since that's where you find someone to match with
   const open = challenges.filter((c) => c.status === "open");
-  const accepted = challenges.filter((c) => c.status === "accepted");
+  // accepted and done are about you, so they only show challenges you're in
+  const accepted = challenges.filter(
+    (c) => c.status === "accepted" && isMine(c),
+  );
   const done = challenges.filter(
-    (c) => c.status === "completed" || c.status === "failed",
+    (c) => (c.status === "completed" || c.status === "failed") && isMine(c),
   );
 
   return (
