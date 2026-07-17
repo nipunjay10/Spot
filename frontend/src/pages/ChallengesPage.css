@@ -1,0 +1,35 @@
+.challenges-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.challenge-create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.challenge-create-dates {
+  display: flex;
+  gap: 16px;
+}
+
+.challenge-section {
+  margin-bottom: 24px;
+}
+
+.challenge-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.challenge-error {
+  color: #dc2626;
+}

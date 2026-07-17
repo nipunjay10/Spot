@@ -2,15 +2,16 @@ import express from "express";
 const router = express.Router();
 import { connectDB } from "../db/connection.js";
 import { ObjectId } from "mongodb";
+import { ensureAuthenticated } from "../middleware/ensureAuthenticated.js";
 
 // CRUD operations for challenges
 
 // CREATE a challenge
-router.post("/", async (req, res) => {
+router.post("/", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const challenge = {
-      creatorId: new ObjectId(req.body.creatorId),
+      creatorId: req.user._id,
       accepterId: null,
       description: req.body.description,
       startDate: req.body.startDate,
@@ -27,7 +28,7 @@ router.post("/", async (req, res) => {
 });
 
 // READ all open challenges (the public feed)
-router.get("/", async (req, res) => {
+router.get("/", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const status = req.query.status; // optional filter, e.g. ?status=open
@@ -44,7 +45,7 @@ router.get("/", async (req, res) => {
 });
 
 // ACCEPT a challenge
-router.put("/:id/accept", async (req, res) => {
+router.put("/:id/accept", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const challenge = await db
@@ -61,7 +62,7 @@ router.put("/:id/accept", async (req, res) => {
       { _id: new ObjectId(req.params.id) },
       {
         $set: {
-          accepterId: new ObjectId(req.body.accepterId),
+          accepterId: req.user._id,
           status: "accepted",
         },
       },
@@ -73,7 +74,7 @@ router.put("/:id/accept", async (req, res) => {
 });
 
 // LOG a proof entry
-router.post("/:id/proof", async (req, res) => {
+router.post("/:id/proof", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const challenge = await db
@@ -120,7 +121,7 @@ router.post("/:id/proof", async (req, res) => {
 });
 
 // DELETE a challenge
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const result = await db

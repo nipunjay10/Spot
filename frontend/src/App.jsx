@@ -8,6 +8,9 @@ import RegisterPage from "./pages/RegisterPage";
 import PartnerSearchPage from "./pages/PartnerSearchPage";
 import ProfilePage from "./pages/ProfilePage";
 import PactDetailPage from "./pages/PactDetailPage";
+import LogWorkoutPage from "./pages/LogWorkoutPage";
+import HistoryPage from "./pages/HistoryPage";
+import ChallengesPage from "./pages/ChallengesPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -90,6 +93,30 @@ function App() {
             element={
               <ProtectedRoute currentUser={currentUser} loading={loading}>
                 <PactDetailPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/log"
+            element={
+              <ProtectedRoute currentUser={currentUser} loading={loading}>
+                <LogWorkoutPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <ProtectedRoute currentUser={currentUser} loading={loading}>
+                <HistoryPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/challenges"
+            element={
+              <ProtectedRoute currentUser={currentUser} loading={loading}>
+                <ChallengesPage />
               </ProtectedRoute>
             }
           />

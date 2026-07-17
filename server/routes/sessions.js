@@ -2,17 +2,17 @@ import express from "express";
 const router = express.Router();
 import { connectDB } from "../db/connection.js";
 import { ObjectId } from "mongodb";
+import { ensureAuthenticated } from "../middleware/ensureAuthenticated.js";
 
 // CRUD operations for sessions
 
 // READ all sessions for a user
-router.get("/", async (req, res) => {
+router.get("/", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
-    const userId = req.query.userId;
     const sessions = await db
       .collection("sessions")
-      .find({ userId: new ObjectId(userId) })
+      .find({ userId: req.user._id })
       .sort({ date: -1 })
       .toArray();
     res.json(sessions);
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 });
 
 // READ one session by id (useful for an edit form)
-router.get("/:id", async (req, res) => {
+router.get("/:id",ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const session = await db
@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // UPDATE a session
-router.put("/:id", async (req, res) => {
+router.put("/:id", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const updates = {
@@ -57,7 +57,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE a session
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const result = await db
@@ -73,10 +73,10 @@ router.delete("/:id", async (req, res) => {
 });
 
 // CREATE a session with PR check
-router.post("/", async (req, res) => {
+router.post("/", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
-    const userId = new ObjectId(req.body.userId);
+    const userId = req.user._id;
     const exercises = req.body.exercises;
 
     // Check each exercise against history BEFORE inserting the new session
