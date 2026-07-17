@@ -57,6 +57,12 @@ router.put("/:id/accept", ensureAuthenticated, async (req, res) => {
     if (challenge.status !== "open") {
       return res.status(400).json({ error: "Challenge is not open" });
     }
+    // a challenge needs two people, so the creator cannot take their own
+    if (challenge.creatorId.toString() === req.user._id.toString()) {
+      return res
+        .status(400)
+        .json({ error: "You cannot accept your own challenge" });
+    }
 
     await db.collection("challenges").updateOne(
       { _id: new ObjectId(req.params.id) },
@@ -87,6 +93,13 @@ router.post("/:id/proof", ensureAuthenticated, async (req, res) => {
       return res
         .status(400)
         .json({ error: "Challenge must be accepted first" });
+    }
+    // only the person who accepted the challenge can log proof for it
+    if (
+      !challenge.accepterId ||
+      challenge.accepterId.toString() !== req.user._id.toString()
+    ) {
+      return res.status(403).json({ error: "Not your challenge to log" });
     }
 
     const newEntry = {
@@ -124,12 +137,26 @@ router.post("/:id/proof", ensureAuthenticated, async (req, res) => {
 router.delete("/:id", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
-    const result = await db
+    const existing = await db
       .collection("challenges")
-      .deleteOne({ _id: new ObjectId(req.params.id) });
-    if (result.deletedCount === 0) {
+      .findOne({ _id: new ObjectId(req.params.id) });
+    if (!existing) {
       return res.status(404).json({ error: "Challenge not found" });
     }
+    // only the person who posted the challenge can delete it
+    if (existing.creatorId.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ error: "Not your challenge" });
+    }
+    // once someone has accepted, deleting would wipe their proof entries too
+    if (existing.status !== "open") {
+      return res
+        .status(400)
+        .json({ error: "Cannot delete a challenge someone has accepted" });
+    }
+
+    await db
+      .collection("challenges")
+      .deleteOne({ _id: new ObjectId(req.params.id) });
     res.json({ message: "Challenge deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
