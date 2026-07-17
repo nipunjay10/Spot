@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import ChallengeCard from "../components/ChallengeCard";
 import "./ChallengesPage.css";
 
-function ChallengesPage() {
+function ChallengesPage({ currentUser }) {
   const [challenges, setChallenges] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -109,6 +110,7 @@ function ChallengesPage() {
               <ChallengeCard
                 key={c._id}
                 challenge={c}
+                currentUser={currentUser}
                 onChanged={loadChallenges}
               />
             ))}
@@ -126,6 +128,7 @@ function ChallengesPage() {
               <ChallengeCard
                 key={c._id}
                 challenge={c}
+                currentUser={currentUser}
                 onChanged={loadChallenges}
               />
             ))}
@@ -143,6 +146,7 @@ function ChallengesPage() {
               <ChallengeCard
                 key={c._id}
                 challenge={c}
+                currentUser={currentUser}
                 onChanged={loadChallenges}
               />
             ))}
@@ -152,5 +156,11 @@ function ChallengesPage() {
     </div>
   );
 }
+
+ChallengesPage.propTypes = {
+  currentUser: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ChallengesPage;

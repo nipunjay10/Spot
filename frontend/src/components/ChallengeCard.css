@@ -68,3 +68,14 @@
 .challenge-delete {
   margin-top: 8px;
 }
+
+.challenge-card-error {
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.challenge-note {
+  color: #6b7280;
+  font-size: 0.9rem;
+}

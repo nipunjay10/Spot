@@ -116,7 +116,7 @@ function App() {
             path="/challenges"
             element={
               <ProtectedRoute currentUser={currentUser} loading={loading}>
-                <ChallengesPage />
+                <ChallengesPage currentUser={currentUser} />
               </ProtectedRoute>
             }
           />
