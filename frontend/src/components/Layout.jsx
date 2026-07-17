@@ -1,3 +1,11 @@
+/**
+ * Layout Component
+ *
+ * Main layout wrapper component that provides the application structure.
+ * Displays the navigation bar and renders the current route's component
+ * through the Outlet placeholder.
+ */
+
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import "./Layout.css";

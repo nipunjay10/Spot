@@ -77,7 +77,10 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute currentUser={currentUser} loading={loading}>
-                <ProfilePage onAccountDeleted={() => setCurrentUser(null)} />
+                <ProfilePage
+                  currentUser={currentUser}
+                  onUserChange={setCurrentUser}
+                />
               </ProtectedRoute>
             }
           />
