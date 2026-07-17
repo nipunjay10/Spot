@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "./PactDetailPage.css";
 
-function PactDetailPage() {
+function PactDetailPage({ currentUser }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [pact, setPact] = useState(null);
@@ -67,57 +68,106 @@ function PactDetailPage() {
     return <p>Loading pact...</p>;
   }
 
+  // work out which side of the pact is me, so the "this week" tile can label
+  // my own count as "You" and show the other person by name
+  const iAmPartnerA = pact.partnerA._id === currentUser._id;
+  const partner = iAmPartnerA ? pact.partnerB : pact.partnerA;
+  const canEdit = pact.status === "pending" && pact.role === "proposer";
+
   return (
     <div className="pact-detail-page">
       <Link to="/">← Back to dashboard</Link>
-      <h1>Pact Detail</h1>
 
-      {/* only the two partners can load this page, so it's safe to show emails here */}
-      <p>
-        Partner A: {pact.partnerA.displayName} ({pact.partnerA.email})
-      </p>
-      <p>
-        Partner B: {pact.partnerB.displayName} ({pact.partnerB.email})
-      </p>
+      <div className="pact-detail-card">
+        {/* names lead, with the status pill on the right */}
+        <div className="pact-detail-header">
+          <h1>
+            You &amp; {partner.displayName} (@{partner.username})
+          </h1>
+          <span className={`pact-status status-${pact.status}`}>
+            {pact.status}
+          </span>
+        </div>
 
-      {/* streak and this week's progress only exist once the pact is active */}
-      {pact.status === "active" && (
-        <>
-          <p>Current streak: {pact.currentStreak}</p>
-          <p>
-            This week: {pact.partnerA.displayName} {pact.thisWeek.partnerA} of{" "}
-            {pact.thisWeek.target} · {pact.partnerB.displayName}{" "}
-            {pact.thisWeek.partnerB} of {pact.thisWeek.target}
-          </p>
-        </>
-      )}
+        <div className="stat-tiles">
+          {/* weekly target is the anchor — first and, when pending, editable */}
+          <div className="stat-tile stat-tile-target">
+            {canEdit ? (
+              <form onSubmit={handleSaveTarget}>
+                <select
+                  id="weeklyTarget"
+                  name="weeklyTarget"
+                  value={weeklyTarget}
+                  onChange={(e) => setWeeklyTarget(e.target.value)}
+                >
+                  {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+                    <option key={n} value={n}>
+                      {n}
+                    </option>
+                  ))}
+                </select>
+                <button type="submit">Save</button>
+              </form>
+            ) : (
+              <span className="stat-number">{pact.weeklyTarget}</span>
+            )}
+            <span className="stat-label">Weekly target</span>
+          </div>
 
-      {/* the target can only be edited while the pact is pending and only by
-          the person who proposed it — otherwise it's locked in and shown as text */}
-      {pact.status === "pending" && pact.role === "proposer" ? (
-        <form onSubmit={handleSaveTarget}>
-          <label htmlFor="weeklyTarget">Weekly target</label>
-          <select
-            id="weeklyTarget"
-            name="weeklyTarget"
-            value={weeklyTarget}
-            onChange={(e) => setWeeklyTarget(e.target.value)}
-          >
-            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-              <option key={n} value={n}>
-                {n}
-              </option>
-            ))}
-          </select>
-          <button type="submit">Save</button>
-        </form>
-      ) : (
-        <p>Weekly target: {pact.weeklyTarget}</p>
-      )}
+          {/* streak and this week only exist once both partners are active */}
+          {pact.status === "active" && (
+            <>
+              <div className="stat-tile">
+                <span className="stat-number">🔥 {pact.currentStreak}</span>
+                <span className="stat-label">Current streak (weeks)</span>
+              </div>
 
-      {error && <p className="pact-detail-error">{error}</p>}
+              <div className="stat-tile stat-tile-week">
+                <span className="stat-week-line">
+                  You{" "}
+                  <b>
+                    {iAmPartnerA
+                      ? pact.thisWeek.partnerA
+                      : pact.thisWeek.partnerB}
+                  </b>{" "}
+                  / {pact.thisWeek.target}
+                </span>
+                <span className="stat-week-line">
+                  {partner.displayName}{" "}
+                  <b>
+                    {iAmPartnerA
+                      ? pact.thisWeek.partnerB
+                      : pact.thisWeek.partnerA}
+                  </b>{" "}
+                  / {pact.thisWeek.target}
+                </span>
+                <span className="stat-label">This week</span>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* a pact you proposed is still waiting on the other person */}
+        {pact.status === "pending" && pact.role === "proposer" && (
+          <p className="pact-note">Waiting to be accepted</p>
+        )}
+
+        {error && <p className="pact-detail-error">{error}</p>}
+
+        {/* emails are demoted to a quiet footer — still here, just not shouting */}
+        <p className="pact-detail-footer">
+          {pact.partnerA.displayName} ({pact.partnerA.email}) ·{" "}
+          {pact.partnerB.displayName} ({pact.partnerB.email})
+        </p>
+      </div>
     </div>
   );
 }
+
+PactDetailPage.propTypes = {
+  currentUser: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default PactDetailPage;
