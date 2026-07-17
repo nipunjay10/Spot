@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ChallengeCard from "../components/ChallengeCard";
+import ChallengeSection from "../components/ChallengeSection";
 import "./ChallengesPage.css";
 
 function ChallengesPage({ currentUser }) {
@@ -137,108 +137,53 @@ function ChallengesPage({ currentUser }) {
         <button type="submit">Post challenge</button>
       </form>
 
-      <section className="challenge-section">
-        <div className="challenge-section-head">
-          <h2>Open</h2>
-          <label htmlFor="openFilter">Show</label>
-          <select
-            id="openFilter"
-            value={openFilter}
-            onChange={(e) => setOpenFilter(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="mine">Posted by me</option>
-            <option value="theirs">I could accept</option>
-          </select>
-        </div>
-        {open.length === 0 ? (
-          // an active filter is a different kind of empty than an empty feed
-          <p>
-            {openFilter === "all"
-              ? "No open challenges."
-              : "None match this filter."}
-          </p>
-        ) : (
-          <div className="challenge-scroll">
-            {open.map((c) => (
-              <ChallengeCard
-                key={c._id}
-                challenge={c}
-                currentUser={currentUser}
-                onChanged={loadChallenges}
-              />
-            ))}
-          </div>
-        )}
-      </section>
+      <ChallengeSection
+        title="Open"
+        filterId="openFilter"
+        filterValue={openFilter}
+        onFilterChange={setOpenFilter}
+        filterOptions={[
+          { value: "all", label: "All" },
+          { value: "mine", label: "Posted by me" },
+          { value: "theirs", label: "I could accept" },
+        ]}
+        challenges={open}
+        emptyMessage="No open challenges."
+        currentUser={currentUser}
+        onChanged={loadChallenges}
+      />
 
-      <section className="challenge-section">
-        <div className="challenge-section-head">
-          <h2>Accepted</h2>
-          <label htmlFor="acceptedFilter">Show</label>
-          <select
-            id="acceptedFilter"
-            value={acceptedFilter}
-            onChange={(e) => setAcceptedFilter(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="mine">Posted by me</option>
-            <option value="accepted-by-me">Accepted by me</option>
-          </select>
-        </div>
-        {accepted.length === 0 ? (
-          <p>
-            {acceptedFilter === "all"
-              ? "Nothing accepted yet."
-              : "None match this filter."}
-          </p>
-        ) : (
-          <div className="challenge-scroll">
-            {accepted.map((c) => (
-              <ChallengeCard
-                key={c._id}
-                challenge={c}
-                currentUser={currentUser}
-                onChanged={loadChallenges}
-              />
-            ))}
-          </div>
-        )}
-      </section>
+      <ChallengeSection
+        title="Accepted"
+        filterId="acceptedFilter"
+        filterValue={acceptedFilter}
+        onFilterChange={setAcceptedFilter}
+        filterOptions={[
+          { value: "all", label: "All" },
+          { value: "mine", label: "Posted by me" },
+          { value: "accepted-by-me", label: "Accepted by me" },
+        ]}
+        challenges={accepted}
+        emptyMessage="Nothing accepted yet."
+        currentUser={currentUser}
+        onChanged={loadChallenges}
+      />
 
-      <section className="challenge-section">
-        <div className="challenge-section-head">
-          <h2>Done</h2>
-          <label htmlFor="doneFilter">Show</label>
-          <select
-            id="doneFilter"
-            value={doneFilter}
-            onChange={(e) => setDoneFilter(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="mine">Posted by me</option>
-            <option value="accepted-by-me">Accepted by me</option>
-          </select>
-        </div>
-        {done.length === 0 ? (
-          <p>
-            {doneFilter === "all"
-              ? "No finished challenges."
-              : "None match this filter."}
-          </p>
-        ) : (
-          <div className="challenge-scroll">
-            {done.map((c) => (
-              <ChallengeCard
-                key={c._id}
-                challenge={c}
-                currentUser={currentUser}
-                onChanged={loadChallenges}
-              />
-            ))}
-          </div>
-        )}
-      </section>
+      <ChallengeSection
+        title="Done"
+        filterId="doneFilter"
+        filterValue={doneFilter}
+        onFilterChange={setDoneFilter}
+        filterOptions={[
+          { value: "all", label: "All" },
+          { value: "mine", label: "Posted by me" },
+          { value: "accepted-by-me", label: "Accepted by me" },
+        ]}
+        challenges={done}
+        emptyMessage="No finished challenges."
+        currentUser={currentUser}
+        onChanged={loadChallenges}
+      />
     </div>
   );
 }

@@ -17,7 +17,9 @@ import "./PactCard.css";
   The week in progress is not part of the streak yet, so it's shown on its own.
 */
 
+// renders one pact card and picks which sections/buttons to show
 function PactCard({ pact, onChanged }) {
+  // holds a message from a failed accept/delete call, if any
   const [error, setError] = useState("");
 
   // work out how this pact relates to me so the card shows the right buttons
@@ -30,6 +32,7 @@ function PactCard({ pact, onChanged }) {
     return data.error || fallback;
   }
 
+  // accepts a pact that was proposed to me, then refreshes the dashboard
   async function handleAccept() {
     setError("");
     // no body — the server reads who I am from the session
@@ -41,8 +44,8 @@ function PactCard({ pact, onChanged }) {
     onChanged();
   }
 
+  // removes a pending pact — same call, but the confirm wording depends on my role
   async function handleDelete() {
-    // "Delete" for my own proposal, "Decline" for one sent to me — same call
     const question = iProposed
       ? "Delete this pact proposal?"
       : "Decline this pact?";
@@ -57,10 +60,68 @@ function PactCard({ pact, onChanged }) {
     onChanged();
   }
 
+  // shows streak and this week's progress — only shown once the pact is active
+  function renderActiveDetails() {
+    return (
+      <>
+        <p>
+          Current streak(# of consecutive weeks hit target) :{" "}
+          <b>{pact.currentStreak}</b>
+        </p>
+        <p className="pact-week-progress">
+          This week: you <b>{pact.thisWeek.you}</b> of {pact.thisWeek.target} ·{" "}
+          {pact.partner.displayName} <b>{pact.thisWeek.partner}</b> of{" "}
+          {pact.thisWeek.target}
+        </p>
+      </>
+    );
+  }
+
+  // tells me I'm waiting on the other person, shown only for my own pending proposal
+  function renderPendingNote() {
+    if (isActive || !iProposed) return null;
+    return <p className="pact-note">Waiting to be accepted</p>;
+  }
+
+  // accept/decline buttons, shown only for a pact someone else proposed to me
+  function renderPendingRespondActions() {
+    if (isActive || iProposed) return null;
+    return (
+      <div className="pact-card-actions">
+        <button type="button" onClick={handleAccept}>
+          Accept
+        </button>
+        <button type="button" className="pact-decline" onClick={handleDelete}>
+          Decline
+        </button>
+      </div>
+    );
+  }
+
+  // link to the pact details, plus a delete button while my own proposal is still pending
+  function renderFooterActions() {
+    return (
+      <div className="pact-card-actions">
+        <Link to={`/pacts/${pact._id}`}>
+          {!isActive && iProposed
+            ? "View details / Edit weekly target"
+            : "View details"}
+        </Link>
+        {!isActive && iProposed && (
+          <button type="button" className="pact-delete" onClick={handleDelete}>
+            Delete
+          </button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="pact-card">
       <div className="pact-card-header">
-        <h2>{pact.partner.displayName}</h2>
+        <h2>
+          {pact.partner.displayName} (@{pact.partner.username})
+        </h2>
         <span className={`pact-status status-${pact.status}`}>
           {pact.status}
         </span>
@@ -70,54 +131,11 @@ function PactCard({ pact, onChanged }) {
         Weekly target (# of gym sessions) : <b>{pact.weeklyTarget}</b>
       </p>
 
-      {/* streak and weekly progress only make sense once the pact is active */}
-      {isActive && (
-        <>
-          <p>
-            Current streak(# of consecutive weeks hit target) :{" "}
-            <b>{pact.currentStreak}</b>
-          </p>
-          <p className="pact-week-progress">
-            This week: you <b>{pact.thisWeek.you}</b> of {pact.thisWeek.target}{" "}
-            · {pact.partner.displayName} <b>{pact.thisWeek.partner}</b> of{" "}
-            {pact.thisWeek.target}
-          </p>
-        </>
-      )}
-
-      {/* pending and proposed by me: waiting on the other person */}
-      {!isActive && iProposed && (
-        <p className="pact-note">Waiting to be accepted</p>
-      )}
-
-      {/* pending and proposed to me: I decide whether to accept it */}
-      {!isActive && !iProposed && (
-        <div className="pact-card-actions">
-          <button type="button" onClick={handleAccept}>
-            Accept
-          </button>
-          <button type="button" className="pact-decline" onClick={handleDelete}>
-            Decline
-          </button>
-        </div>
-      )}
-
+      {isActive && renderActiveDetails()}
+      {renderPendingNote()}
+      {renderPendingRespondActions()}
       {error && <p className="pact-card-error">{error}</p>}
-
-      <div className="pact-card-actions">
-        {/* only the proposer of a pending pact can still edit the target */}
-        <Link to={`/pacts/${pact._id}`}>
-          {!isActive && iProposed
-            ? "View details / Edit weekly target"
-            : "View details"}
-        </Link>
-        {/* the proposer can delete their own proposal while it's still pending */}
-        {!isActive && iProposed && (
-          <button type="button" className="pact-delete" onClick={handleDelete}>
-            Delete
-          </button>
-        )}
-      </div>
+      {renderFooterActions()}
     </div>
   );
 }
@@ -138,6 +156,7 @@ PactCard.propTypes = {
     }),
     partner: PropTypes.shape({
       displayName: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   onChanged: PropTypes.func.isRequired,

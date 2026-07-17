@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./PactDetailPage.css";
 
 function PactDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [pact, setPact] = useState(null);
   const [weeklyTarget, setWeeklyTarget] = useState(1);
   const [error, setError] = useState("");
@@ -47,8 +48,8 @@ function PactDetailPage() {
       return;
     }
 
-    // refresh the pact so the displayed target matches what was saved
-    loadPact();
+    // head back to the dashboard now that the new target is saved
+    navigate("/");
   }
 
   // the pact couldn't be loaded at all — say so instead of hanging

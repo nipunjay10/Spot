@@ -39,6 +39,23 @@ function DashboardPage() {
     (pact) => pact.status === "pending" && pact.role === "invited",
   );
 
+  function PactSection({ title, pacts, emptyMessage }) {
+    return (
+      <section className="pact-section">
+        <h2>{title}</h2>
+        {pacts.length === 0 ? (
+          <p>{emptyMessage}</p>
+        ) : (
+          <div className="pact-list">
+            {pacts.map((pact) => (
+              <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
+            ))}
+          </div>
+        )}
+      </section>
+    );
+  }
+
   return (
     <div className="dashboard-page">
       <h1>Pacts</h1>
@@ -50,44 +67,23 @@ function DashboardPage() {
         </p>
       ) : (
         <>
-          <section className="pact-section">
-            <h2>Active</h2>
-            {active.length === 0 ? (
-              <p>No active pacts yet.</p>
-            ) : (
-              <div className="pact-list">
-                {active.map((pact) => (
-                  <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
-                ))}
-              </div>
-            )}
-          </section>
+          <PactSection
+            title="Active"
+            pacts={active}
+            emptyMessage="No active pacts yet."
+          />
 
-          <section className="pact-section">
-            <h2>Proposed by you</h2>
-            {outgoing.length === 0 ? (
-              <p>You haven&apos;t proposed any pacts.</p>
-            ) : (
-              <div className="pact-list">
-                {outgoing.map((pact) => (
-                  <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
-                ))}
-              </div>
-            )}
-          </section>
+          <PactSection
+            title="Proposed by you"
+            pacts={outgoing}
+            emptyMessage="You haven't proposed any pacts."
+          />
 
-          <section className="pact-section">
-            <h2>Proposed to you</h2>
-            {incoming.length === 0 ? (
-              <p>No one has proposed a pact to you.</p>
-            ) : (
-              <div className="pact-list">
-                {incoming.map((pact) => (
-                  <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
-                ))}
-              </div>
-            )}
-          </section>
+          <PactSection
+            title="Proposed to you"
+            pacts={incoming}
+            emptyMessage="No one has proposed a pact to you."
+          />
         </>
       )}
     </div>
