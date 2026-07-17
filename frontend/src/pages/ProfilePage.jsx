@@ -28,6 +28,9 @@ function ProfilePage({ currentUser, onUserChange }) {
     <div className="profile-page">
       <h1>Profile</h1>
 
+      {/* username is the login identity, shown here but never editable */}
+      <p className="profile-username">@{currentUser.username}</p>
+
       <ProfileForm user={currentUser} onSave={onUserChange} />
 
       <button
@@ -45,6 +48,7 @@ function ProfilePage({ currentUser, onUserChange }) {
 ProfilePage.propTypes = {
   currentUser: PropTypes.shape({
     _id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
   }),

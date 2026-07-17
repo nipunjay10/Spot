@@ -3,6 +3,13 @@
   margin: 0 auto;
 }
 
+.profile-username {
+  margin-top: -8px;
+  margin-bottom: 16px;
+  color: #777;
+  font-size: 15px;
+}
+
 .delete-account-button {
   margin-top: 24px;
   padding: 8px 12px;

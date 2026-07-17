@@ -26,14 +26,14 @@ function NavBar({ currentUser, loading, onLogout }) {
       <div className="navbar-links">
         {currentUser ? (
           <>
-            {/* display current user name or displayName */}
+            {/* greet with the friendly name, plus the login handle */}
             <span className="navbar-user">
-              Hi, {currentUser.displayName || currentUser.username}
+              Hi, {currentUser.displayName} (@{currentUser.username})
             </span>
             <span className="navbar-separator">|</span>
+            <Link to="/profile">Profile</Link>
             <Link to="/">Dashboard</Link>
             <Link to="/search">Find a Partner</Link>
-            <Link to="/profile">Profile</Link>
             <Link to="/log">Log Workout</Link>
             <Link to="/history">History</Link>
             <Link to="/challenges">Challenges</Link>
