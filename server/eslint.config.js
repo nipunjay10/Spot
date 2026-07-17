@@ -9,6 +9,8 @@ import prettierConfig from "eslint-config-prettier";
 export default [
   js.configs.recommended,
   {
+    // spells out which files to lint instead of relying on ESLint's defaults
+    files: ["**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
