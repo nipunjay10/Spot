@@ -61,6 +61,30 @@ async function withStreak(pact) {
   };
 }
 
+// "proposer" if I sent this pact, "invited" if it was proposed to me
+function roleOf(pact, myId) {
+  return pact.proposedBy && pact.proposedBy.toString() === myId
+    ? "proposer"
+    : "invited";
+}
+
+// role + streak info shared by both the list and detail routes.
+// a pending pact has no streak or weekly progress yet, so weekCounts is null;
+// each route shapes its own "thisWeek" from weekCounts since the list keys it
+// as you/partner while the detail page keys it as partnerA/partnerB
+async function withRoleAndStreak(pact, myId) {
+  const role = roleOf(pact, myId);
+  if (pact.status !== "active") {
+    return { role, currentStreak: null, weekCounts: null };
+  }
+  const streak = await withStreak(pact);
+  return {
+    role,
+    currentStreak: streak.currentStreak,
+    weekCounts: streak.weekCounts,
+  };
+}
+
 // CREATE a new pact with a partner
 router.post("/", async (req, res) => {
   try {
@@ -132,39 +156,23 @@ router.get("/", async (req, res) => {
         const partnerId = iAmPartnerA ? pact.partnerB : pact.partnerA;
         const partner = await usersDb.findById(partnerId);
 
-        // "proposer" if I sent this pact, "invited" if it was proposed to me —
-        // the dashboard uses this to sort pending pacts into two piles
-        const role =
-          pact.proposedBy && pact.proposedBy.toString() === myId
-            ? "proposer"
-            : "invited";
+        // role and streak are worked out the same way for both routes
+        const { role, currentStreak, weekCounts } = await withRoleAndStreak(
+          pact,
+          myId,
+        );
 
-        // a pending pact has no streak or weekly progress yet, so only work
-        // those out once the pact is active
-        if (pact.status !== "active") {
-          return {
-            ...pact,
-            partner: usersDb.sanitize(partner),
-            role,
-            currentStreak: null,
-            thisWeek: null,
-          };
-        }
-
-        const streak = await withStreak(pact);
         return {
           ...pact,
           partner: usersDb.sanitize(partner),
           role,
-          currentStreak: streak.currentStreak,
-          // this card is shown from my side, so name the counts that way
-          thisWeek: {
-            you: iAmPartnerA
-              ? streak.weekCounts.partnerA
-              : streak.weekCounts.partnerB,
-            partner: iAmPartnerA
-              ? streak.weekCounts.partnerB
-              : streak.weekCounts.partnerA,
+          currentStreak,
+          // weekCounts is null on a pending pact, so `null && {...}` keeps
+          // thisWeek null (not undefined) — this card is shown from my side,
+          // so name the counts you/partner
+          thisWeek: weekCounts && {
+            you: iAmPartnerA ? weekCounts.partnerA : weekCounts.partnerB,
+            partner: iAmPartnerA ? weekCounts.partnerB : weekCounts.partnerA,
             target: pact.weeklyTarget,
           },
         };
@@ -195,36 +203,24 @@ router.get("/:id", requireValidId, async (req, res) => {
       usersDb.findById(pact.partnerB),
     ]);
 
-    // "proposer" if I sent this pact, "invited" if it was proposed to me —
-    // the detail page uses this to decide whether the target is editable
-    const role =
-      pact.proposedBy && pact.proposedBy.toString() === myId
-        ? "proposer"
-        : "invited";
+    // role and streak are worked out the same way for both routes
+    const { role, currentStreak, weekCounts } = await withRoleAndStreak(
+      pact,
+      myId,
+    );
 
-    // a pending pact has no streak or weekly progress to report yet
-    if (pact.status !== "active") {
-      return res.json({
-        ...pact,
-        partnerA: usersDb.sanitize(partnerA),
-        partnerB: usersDb.sanitize(partnerB),
-        role,
-        currentStreak: null,
-        thisWeek: null,
-      });
-    }
-
-    const streak = await withStreak(pact);
     res.json({
       ...pact,
       partnerA: usersDb.sanitize(partnerA),
       partnerB: usersDb.sanitize(partnerB),
       role,
-      currentStreak: streak.currentStreak,
-      // this page names both partners, so key the counts by side rather than "you"
-      thisWeek: {
-        partnerA: streak.weekCounts.partnerA,
-        partnerB: streak.weekCounts.partnerB,
+      currentStreak,
+      // weekCounts is null on a pending pact, so `null && {...}` keeps thisWeek
+      // null (not undefined) — this page names both partners, so key the counts
+      // by side rather than "you"
+      thisWeek: weekCounts && {
+        partnerA: weekCounts.partnerA,
+        partnerB: weekCounts.partnerB,
         target: pact.weeklyTarget,
       },
     });
