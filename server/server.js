@@ -68,11 +68,11 @@ app.use("/api/auth", authRouter);
 // edit/delete are self-only), so they require login too
 app.use("/api/users", ensureAuthenticated, usersRouter);
 
-// wired in session routes
-app.use("/api/sessions", sessionsRouter);
+// a session belongs to one user, so every sessions route requires login
+app.use("/api/sessions", ensureAuthenticated, sessionsRouter);
 
-// wired in challenge routes
-app.use("/api/challenges", challengesRouter);
+// challenges are shared between users, but only logged-in ones
+app.use("/api/challenges", ensureAuthenticated, challengesRouter);
 
 // pacts are personal, so every pacts route requires login
 app.use("/api/pacts", ensureAuthenticated, pactsRouter);
