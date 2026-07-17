@@ -6,6 +6,26 @@ import { ensureAuthenticated } from "../middleware/ensureAuthenticated.js";
 
 // CRUD operations for sessions
 
+// heaviest weight this user has ever done for an exercise name.
+// excludeId skips one session (used when editing, so a session isn't
+// compared against itself). Returns 0 if there's no prior record.
+async function priorBestWeight(db, userId, name, excludeId = null) {
+  // only look at this user's sessions, optionally skipping the one being edited
+  const match = { userId };
+  if (excludeId) match._id = { $ne: excludeId };
+  const rows = await db
+    .collection("sessions")
+    .aggregate([
+      { $match: match },
+      { $unwind: "$exercises" },
+      { $match: { "exercises.name": name } },
+      { $sort: { "exercises.weight": -1 } },
+      { $limit: 1 },
+    ])
+    .toArray();
+  return rows.length > 0 ? rows[0].exercises.weight : 0;
+}
+
 // READ all sessions for a user
 router.get("/", ensureAuthenticated, async (req, res) => {
   try {
@@ -52,15 +72,27 @@ router.put("/:id", ensureAuthenticated, async (req, res) => {
       return res.status(403).json({ error: "Not your session" });
     }
 
-    // isPR is earned on the server, so never trust the copy the client sends back
+    // isPR is earned on the server, so never trust the copy the client sends back.
+    // recompute each exercise against the user's history, excluding this session
+    // so an edited exercise isn't compared against its own old weight
     const incoming = req.body.exercises || [];
-    const exercises = incoming.map((ex, i) => ({
-      name: ex.name,
-      sets: ex.sets,
-      reps: ex.reps,
-      weight: ex.weight,
-      isPR: existing.exercises[i] ? existing.exercises[i].isPR : false,
-    }));
+    const exercises = await Promise.all(
+      incoming.map(async (ex) => {
+        const previousMax = await priorBestWeight(
+          db,
+          existing.userId,
+          ex.name,
+          existing._id,
+        );
+        return {
+          name: ex.name,
+          sets: ex.sets,
+          reps: ex.reps,
+          weight: ex.weight,
+          isPR: ex.weight > previousMax,
+        };
+      }),
+    );
 
     const updates = {
       date: req.body.date,
@@ -118,19 +150,7 @@ router.post("/", ensureAuthenticated, async (req, res) => {
     // Check each exercise against history BEFORE inserting the new session
     const exercisesWithPRFlag = await Promise.all(
       exercises.map(async (ex) => {
-        const priorBest = await db
-          .collection("sessions")
-          .aggregate([
-            { $match: { userId: userId } },
-            { $unwind: "$exercises" },
-            { $match: { "exercises.name": ex.name } },
-            { $sort: { "exercises.weight": -1 } },
-            { $limit: 1 },
-          ])
-          .toArray();
-
-        const previousMax =
-          priorBest.length > 0 ? priorBest[0].exercises.weight : 0;
+        const previousMax = await priorBestWeight(db, userId, ex.name);
         return { ...ex, isPR: ex.weight > previousMax };
       }),
     );

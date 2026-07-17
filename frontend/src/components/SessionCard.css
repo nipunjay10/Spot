@@ -53,3 +53,22 @@
   font-size: 0.9rem;
   margin-top: 8px;
 }
+
+/* editable exercise rows in edit mode — mirrors the log-workout form */
+.session-card .exercise-fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+.session-card .exercise-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.session-card .exercise-row input {
+  flex: 1;
+  min-width: 0;
+}

@@ -2,15 +2,35 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import "./SessionCard.css";
 
+// one blank exercise row — the shape "Add exercise" appends
+const blankExercise = { name: "", sets: "", reps: "", weight: "" };
+
 function SessionCard({ session, onChanged }) {
   const [editing, setEditing] = useState(false);
   const [notes, setNotes] = useState(session.notes);
+  // exercises are edited in their own state, seeded from the saved session
+  const [exercises, setExercises] = useState(session.exercises);
   const [error, setError] = useState("");
 
   // pull the server's message off a failed response so the user sees why
   async function readError(res, fallback) {
     const data = await res.json().catch(() => ({}));
     return data.error || fallback;
+  }
+
+  // update one field of one exercise row
+  function updateExercise(index, field, value) {
+    setExercises(
+      exercises.map((ex, i) => (i === index ? { ...ex, [field]: value } : ex)),
+    );
+  }
+
+  function addRow() {
+    setExercises([...exercises, { ...blankExercise }]);
+  }
+
+  function removeRow(index) {
+    setExercises(exercises.filter((_, i) => i !== index));
   }
 
   async function handleDelete() {
@@ -29,13 +49,20 @@ function SessionCard({ session, onChanged }) {
 
   async function handleSaveEdit() {
     setError("");
-    // keep the same date + exercises, just update notes (simple edit for now)
+    // convert the string inputs to numbers before sending, like the log form
+    const cleaned = exercises.map((ex) => ({
+      name: ex.name,
+      sets: Number(ex.sets),
+      reps: Number(ex.reps),
+      weight: Number(ex.weight),
+    }));
+    // date stays the same — only exercises and notes are editable here
     const res = await fetch(`/api/sessions/${session._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         date: session.date,
-        exercises: session.exercises,
+        exercises: cleaned,
         notes,
       }),
     });
@@ -50,6 +77,7 @@ function SessionCard({ session, onChanged }) {
   // drop any typing that wasn't saved
   function handleCancel() {
     setNotes(session.notes);
+    setExercises(session.exercises);
     setError("");
     setEditing(false);
   }
@@ -81,14 +109,66 @@ function SessionCard({ session, onChanged }) {
         </div>
       </div>
 
-      <ul className="session-card-exercises">
-        {session.exercises.map((ex, i) => (
-          <li key={i} className={ex.isPR ? "pr-hit" : ""}>
-            {ex.name}: {ex.sets}×{ex.reps} @ {ex.weight} lbs
-            {ex.isPR && <span className="pr-badge">PR</span>}
-          </li>
-        ))}
-      </ul>
+      {editing ? (
+        <fieldset className="exercise-fieldset">
+          <legend>Exercises</legend>
+          {exercises.map((ex, index) => (
+            <div className="exercise-row" key={index}>
+              <input
+                type="text"
+                placeholder="Exercise"
+                value={ex.name}
+                onChange={(e) => updateExercise(index, "name", e.target.value)}
+                required
+              />
+              <input
+                type="number"
+                placeholder="Sets"
+                value={ex.sets}
+                onChange={(e) => updateExercise(index, "sets", e.target.value)}
+                required
+              />
+              <input
+                type="number"
+                placeholder="Reps"
+                value={ex.reps}
+                onChange={(e) => updateExercise(index, "reps", e.target.value)}
+                required
+              />
+              <input
+                type="number"
+                placeholder="Weight"
+                value={ex.weight}
+                onChange={(e) =>
+                  updateExercise(index, "weight", e.target.value)
+                }
+                required
+              />
+              {exercises.length > 1 && (
+                <button
+                  type="button"
+                  className="remove-row"
+                  onClick={() => removeRow(index)}
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+          ))}
+          <button type="button" className="add-row" onClick={addRow}>
+            Add exercise
+          </button>
+        </fieldset>
+      ) : (
+        <ul className="session-card-exercises">
+          {session.exercises.map((ex, i) => (
+            <li key={i} className={ex.isPR ? "pr-hit" : ""}>
+              {ex.name}: {ex.sets}×{ex.reps} @ {ex.weight} lbs
+              {ex.isPR && <span className="pr-badge">PR</span>}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {editing ? (
         <textarea
