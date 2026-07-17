@@ -24,7 +24,7 @@ function DashboardPage() {
 
   // still waiting on the initial fetch — don't flash the empty state
   if (loading) {
-    return null;
+    return <p>Loading pacts...</p>;
   }
 
   return (

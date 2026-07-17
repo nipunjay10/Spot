@@ -20,7 +20,7 @@ function ProfilePage({ currentUser, onUserChange }) {
 
   // safety check in case this renders while the user is being cleared
   if (!currentUser) {
-    return null;
+    return <p>Loading profile...</p>;
   }
 
   return (

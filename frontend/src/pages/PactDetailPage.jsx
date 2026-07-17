@@ -58,7 +58,7 @@ function PactDetailPage() {
 
   // still waiting on the initial fetch
   if (!pact) {
-    return null;
+    return <p>Loading pact...</p>;
   }
 
   return (
