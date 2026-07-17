@@ -4,13 +4,14 @@ import "./ChallengeCard.css";
 
 function ChallengeCard({ challenge, onChanged }) {
   // proof-entry form state (only used when the challenge is accepted)
-  const [proofDate, setProofDate] = useState(() => { // default to today
+  const [proofDate, setProofDate] = useState(() => {
+    // default to today
     const now = new Date();
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const day = String(now.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
-  });   
+  });
   const [completed, setCompleted] = useState(false);
   const [proofNotes, setProofNotes] = useState("");
 
