@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./PactDetailPage.css";
 
@@ -9,19 +9,22 @@ function PactDetailPage() {
   const [weeklyTarget, setWeeklyTarget] = useState(1);
   const [error, setError] = useState("");
 
-  // load this pact (with both partners' profiles) when the page mounts
-  useEffect(() => {
-    loadPact();
-  }, [id]);
-
-  async function loadPact() {
+  // fetches this pact (with both partners' profiles) from the server.
+  // useCallback keeps the same function between renders unless the id
+  // changes, so the useEffect below can safely depend on it.
+  const loadPact = useCallback(async () => {
     const res = await fetch(`/api/pacts/${id}`);
     if (res.ok) {
       const data = await res.json();
       setPact(data);
       setWeeklyTarget(data.weeklyTarget);
     }
-  }
+  }, [id]);
+
+  // load the pact when the page mounts, and again if the id in the url changes
+  useEffect(() => {
+    loadPact();
+  }, [loadPact]);
 
   async function handleSaveTarget(e) {
     // stop the browser from doing a full page reload on submit

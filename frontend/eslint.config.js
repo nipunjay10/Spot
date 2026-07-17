@@ -17,6 +17,8 @@ export default [
   react.configs.flat.recommended,
   react.configs.flat["jsx-runtime"],
   {
+    // without this, ESLint 9 never picks up our .js/.jsx files at all
+    files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
