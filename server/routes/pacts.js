@@ -38,12 +38,15 @@ async function withStreak(pact) {
     sessionCountsDb.countByWeek(pact.partnerB, oldestWeek, windowEnd),
   ]);
 
-  const createdAt = pact.createdAt.toISOString().slice(0, 10);
+  // a pact's streak only counts weeks after it went active, so start from
+  // activatedAt; older seeded pacts have no activatedAt, so fall back to createdAt
+  const startDate = pact.activatedAt || pact.createdAt;
+  const activatedAt = startDate.toISOString().slice(0, 10);
   const currentStreak = streakFrom(
     countsA,
     countsB,
     pact.weeklyTarget,
-    createdAt,
+    activatedAt,
     today,
   );
 
@@ -97,10 +100,15 @@ router.post("/", async (req, res) => {
 
     // the logged-in user is always partnerA, the person they invited is partnerB
     // no streak field — a pact's streak is worked out from its sessions on read
+    // a new pact starts "pending": it isn't active until partnerB accepts it,
+    // so activatedAt is null for now and the streak clock starts then
     const newPact = await pactsDb.create({
       partnerA: req.user._id,
       partnerB: partner._id,
+      proposedBy: req.user._id,
       weeklyTarget,
+      status: "pending",
+      activatedAt: null,
       createdAt: new Date(),
     });
 
@@ -122,13 +130,32 @@ router.get("/", async (req, res) => {
       pacts.map(async (pact) => {
         const iAmPartnerA = pact.partnerA.toString() === myId;
         const partnerId = iAmPartnerA ? pact.partnerB : pact.partnerA;
-        const [partner, streak] = await Promise.all([
-          usersDb.findById(partnerId),
-          withStreak(pact),
-        ]);
+        const partner = await usersDb.findById(partnerId);
+
+        // "proposer" if I sent this pact, "invited" if it was proposed to me —
+        // the dashboard uses this to sort pending pacts into two piles
+        const role =
+          pact.proposedBy && pact.proposedBy.toString() === myId
+            ? "proposer"
+            : "invited";
+
+        // a pending pact has no streak or weekly progress yet, so only work
+        // those out once the pact is active
+        if (pact.status !== "active") {
+          return {
+            ...pact,
+            partner: usersDb.sanitize(partner),
+            role,
+            currentStreak: null,
+            thisWeek: null,
+          };
+        }
+
+        const streak = await withStreak(pact);
         return {
           ...pact,
           partner: usersDb.sanitize(partner),
+          role,
           currentStreak: streak.currentStreak,
           // this card is shown from my side, so name the counts that way
           thisWeek: {
@@ -163,16 +190,36 @@ router.get("/:id", requireValidId, async (req, res) => {
     }
 
     // fetch both profiles at once so the detail page can show both names
-    const [partnerA, partnerB, streak] = await Promise.all([
+    const [partnerA, partnerB] = await Promise.all([
       usersDb.findById(pact.partnerA),
       usersDb.findById(pact.partnerB),
-      withStreak(pact),
     ]);
 
+    // "proposer" if I sent this pact, "invited" if it was proposed to me —
+    // the detail page uses this to decide whether the target is editable
+    const role =
+      pact.proposedBy && pact.proposedBy.toString() === myId
+        ? "proposer"
+        : "invited";
+
+    // a pending pact has no streak or weekly progress to report yet
+    if (pact.status !== "active") {
+      return res.json({
+        ...pact,
+        partnerA: usersDb.sanitize(partnerA),
+        partnerB: usersDb.sanitize(partnerB),
+        role,
+        currentStreak: null,
+        thisWeek: null,
+      });
+    }
+
+    const streak = await withStreak(pact);
     res.json({
       ...pact,
       partnerA: usersDb.sanitize(partnerA),
       partnerB: usersDb.sanitize(partnerB),
+      role,
       currentStreak: streak.currentStreak,
       // this page names both partners, so key the counts by side rather than "you"
       thisWeek: {
@@ -198,6 +245,15 @@ router.put("/:id", requireValidId, async (req, res) => {
       return res.status(403).json({ error: "Not a member of this pact" });
     }
 
+    // the target is locked once the pact is active — it can only be tweaked
+    // while it's still pending, and only by the person who proposed it
+    const iProposed = pact.proposedBy && pact.proposedBy.toString() === myId;
+    if (pact.status !== "pending" || !iProposed) {
+      return res
+        .status(400)
+        .json({ error: "Can only edit a pending pact you proposed" });
+    }
+
     // weeklyTarget is the only field a pact allows editing
     const { weeklyTarget } = req.body;
     if (
@@ -217,21 +273,62 @@ router.put("/:id", requireValidId, async (req, res) => {
   }
 });
 
-// DELETE (dissolve) a pact
-router.delete("/:id", requireValidId, async (req, res) => {
+// ACCEPT a pending pact that was proposed to you
+router.put("/:id/accept", requireValidId, async (req, res) => {
   try {
     const pact = await pactsDb.findById(req.objectId);
     if (!pact) return res.status(404).json({ error: "Pact not found" });
 
-    // only the two partners can dissolve their own pact
+    // only the two partners can act on the pact at all
     const myId = req.user._id.toString();
     if (!isMember(pact, myId)) {
       return res.status(403).json({ error: "Not a member of this pact" });
     }
 
-    // dissolving is a hard delete — there's no "dissolved" status to track
+    // a pact can only be accepted while it's still pending
+    if (pact.status !== "pending") {
+      return res.status(400).json({ error: "Pact is not pending" });
+    }
+    // the person who proposed the pact can't accept their own proposal
+    if (pact.proposedBy && pact.proposedBy.toString() === myId) {
+      return res
+        .status(400)
+        .json({ error: "You cannot accept a pact you proposed" });
+    }
+
+    // going active starts the streak clock, so stamp activatedAt now
+    const updatedPact = await pactsDb.updateStatus(req.objectId, {
+      status: "active",
+      activatedAt: new Date(),
+    });
+    res.json(updatedPact);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE a pending pact — the proposer deleting their own proposal, or the
+// invited partner declining it. Both are the same hard delete; only the
+// button label differs on the frontend.
+router.delete("/:id", requireValidId, async (req, res) => {
+  try {
+    const pact = await pactsDb.findById(req.objectId);
+    if (!pact) return res.status(404).json({ error: "Pact not found" });
+
+    // only the two partners can act on their own pact
+    const myId = req.user._id.toString();
+    if (!isMember(pact, myId)) {
+      return res.status(403).json({ error: "Not a member of this pact" });
+    }
+
+    // an active pact can't be torn down anymore — only pending ones
+    if (pact.status !== "pending") {
+      return res.status(400).json({ error: "Cannot delete an active pact" });
+    }
+
+    // deleting is a hard delete — there's no "declined" status to track
     await pactsDb.remove(req.objectId);
-    res.json({ message: "Pact dissolved" });
+    res.json({ message: "Pact deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
