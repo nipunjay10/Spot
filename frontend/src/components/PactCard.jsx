@@ -60,23 +60,6 @@ function PactCard({ pact, onChanged }) {
     onChanged();
   }
 
-  // shows streak and this week's progress — only shown once the pact is active
-  function renderActiveDetails() {
-    return (
-      <>
-        <p>
-          Current streak(# of consecutive weeks hit target) :{" "}
-          <b>{pact.currentStreak}</b>
-        </p>
-        <p className="pact-week-progress">
-          This week: you <b>{pact.thisWeek.you}</b> of {pact.thisWeek.target} ·{" "}
-          {pact.partner.displayName} <b>{pact.thisWeek.partner}</b> of{" "}
-          {pact.thisWeek.target}
-        </p>
-      </>
-    );
-  }
-
   // tells me I'm waiting on the other person, shown only for my own pending proposal
   function renderPendingNote() {
     if (isActive || !iProposed) return null;
@@ -103,9 +86,11 @@ function PactCard({ pact, onChanged }) {
     return (
       <div className="pact-card-actions">
         <Link to={`/pacts/${pact._id}`}>
-          {!isActive && iProposed
-            ? "View details / Edit weekly target"
-            : "View details"}
+          {isActive
+            ? "View details / Progress"
+            : iProposed
+              ? "View details / Edit weekly target"
+              : "View details"}
         </Link>
         {!isActive && iProposed && (
           <button type="button" className="pact-delete" onClick={handleDelete}>
@@ -131,7 +116,6 @@ function PactCard({ pact, onChanged }) {
         Weekly target (# of gym sessions) : <b>{pact.weeklyTarget}</b>
       </p>
 
-      {isActive && renderActiveDetails()}
       {renderPendingNote()}
       {renderPendingRespondActions()}
       {error && <p className="pact-card-error">{error}</p>}
@@ -140,20 +124,14 @@ function PactCard({ pact, onChanged }) {
   );
 }
 
-// describes the shape of the props this component expects.
-// currentStreak and thisWeek are only present on active pacts.
+// describes the shape of the props this component expects. the card only shows
+// the target and status now — streak and weekly progress live on the detail page.
 PactCard.propTypes = {
   pact: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
     weeklyTarget: PropTypes.number.isRequired,
-    currentStreak: PropTypes.number,
-    thisWeek: PropTypes.shape({
-      you: PropTypes.number.isRequired,
-      partner: PropTypes.number.isRequired,
-      target: PropTypes.number.isRequired,
-    }),
     partner: PropTypes.shape({
       displayName: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
