@@ -36,12 +36,18 @@ async function loadPacts() {
   // no currentStreak — it's worked out from the sessions whenever a pact is read
   const pacts = [];
   for (let i = 0; i + 1 < sortedIds.length; i += 2) {
+    // a year back, so seeded streaks aren't cut short by the pact's own age
+    const yearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
     pacts.push({
       partnerA: new ObjectId(sortedIds[i]),
       partnerB: new ObjectId(sortedIds[i + 1]),
       weeklyTarget: 2 + (pacts.length % 3), // cycles through 2, 3, 4
-      // a year back, so seeded streaks aren't cut short by the pact's own age
-      createdAt: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000),
+      // seeded pacts are already-running partnerships, so mark them active
+      // and count their streak from a year ago (same as createdAt)
+      status: "active",
+      proposedBy: new ObjectId(sortedIds[i]),
+      activatedAt: yearAgo,
+      createdAt: yearAgo,
     });
   }
 

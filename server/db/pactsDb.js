@@ -28,7 +28,9 @@ async function findByUser(userId) {
 }
 
 // READ a pact between two specific users — used to stop the same two
-// people from creating a duplicate pact with each other
+// people from creating a duplicate pact with each other. Declining or
+// deleting a pact removes its row, so any pact this finds is still
+// pending or active and should block a fresh proposal.
 async function findBetween(userIdA, userIdB) {
   const db = await connectDB();
   const idA = new ObjectId(userIdA);
@@ -56,6 +58,20 @@ async function updateTarget(id, weeklyTarget) {
   return result;
 }
 
+// UPDATE any set of fields on a pact — used to flip a pending pact to
+// active (setting status and activatedAt) when the invited partner accepts
+async function updateStatus(id, fields) {
+  const db = await connectDB();
+  const result = await db
+    .collection("pacts")
+    .findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: fields },
+      { returnDocument: "after" },
+    );
+  return result;
+}
+
 // DELETE a pact (dissolving it)
 async function remove(id) {
   const db = await connectDB();
@@ -71,5 +87,6 @@ export const pactsDb = {
   findByUser,
   findBetween,
   updateTarget,
+  updateStatus,
   remove,
 };
