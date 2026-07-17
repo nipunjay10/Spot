@@ -92,7 +92,7 @@ function App() {
             path="/pacts/:id"
             element={
               <ProtectedRoute currentUser={currentUser} loading={loading}>
-                <PactDetailPage currentUser={currentUser} />
+                <PactDetailPage />
               </ProtectedRoute>
             }
           />

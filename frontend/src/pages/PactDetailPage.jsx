@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./PactDetailPage.css";
 
 function PactDetailPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [pact, setPact] = useState(null);
   const [weeklyTarget, setWeeklyTarget] = useState(1);
   const [error, setError] = useState("");
@@ -52,18 +51,6 @@ function PactDetailPage() {
     loadPact();
   }
 
-  async function handleDissolve() {
-    // ask for confirmation since dissolving a pact can't be undone
-    const confirmed = window.confirm(
-      "Are you sure you want to dissolve this pact?",
-    );
-    if (!confirmed) return;
-
-    await fetch(`/api/pacts/${id}`, { method: "DELETE" });
-    // go back to the dashboard now that the pact is gone
-    navigate("/");
-  }
-
   // the pact couldn't be loaded at all — say so instead of hanging
   if (loadError) {
     return (
@@ -91,39 +78,43 @@ function PactDetailPage() {
       <p>
         Partner B: {pact.partnerB.displayName} ({pact.partnerB.email})
       </p>
-      <p>Current streak: {pact.currentStreak}</p>
-      <p>
-        This week: {pact.partnerA.displayName} {pact.thisWeek.partnerA} of{" "}
-        {pact.thisWeek.target} · {pact.partnerB.displayName}{" "}
-        {pact.thisWeek.partnerB} of {pact.thisWeek.target}
-      </p>
 
-      <form onSubmit={handleSaveTarget}>
-        <label htmlFor="weeklyTarget">Weekly target</label>
-        <select
-          id="weeklyTarget"
-          name="weeklyTarget"
-          value={weeklyTarget}
-          onChange={(e) => setWeeklyTarget(e.target.value)}
-        >
-          {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-            <option key={n} value={n}>
-              {n}
-            </option>
-          ))}
-        </select>
-        <button type="submit">Save</button>
-      </form>
+      {/* streak and this week's progress only exist once the pact is active */}
+      {pact.status === "active" && (
+        <>
+          <p>Current streak: {pact.currentStreak}</p>
+          <p>
+            This week: {pact.partnerA.displayName} {pact.thisWeek.partnerA} of{" "}
+            {pact.thisWeek.target} · {pact.partnerB.displayName}{" "}
+            {pact.thisWeek.partnerB} of {pact.thisWeek.target}
+          </p>
+        </>
+      )}
+
+      {/* the target can only be edited while the pact is pending and only by
+          the person who proposed it — otherwise it's locked in and shown as text */}
+      {pact.status === "pending" && pact.role === "proposer" ? (
+        <form onSubmit={handleSaveTarget}>
+          <label htmlFor="weeklyTarget">Weekly target</label>
+          <select
+            id="weeklyTarget"
+            name="weeklyTarget"
+            value={weeklyTarget}
+            onChange={(e) => setWeeklyTarget(e.target.value)}
+          >
+            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+              <option key={n} value={n}>
+                {n}
+              </option>
+            ))}
+          </select>
+          <button type="submit">Save</button>
+        </form>
+      ) : (
+        <p>Weekly target: {pact.weeklyTarget}</p>
+      )}
 
       {error && <p className="pact-detail-error">{error}</p>}
-
-      <button
-        type="button"
-        className="dissolve-button"
-        onClick={handleDissolve}
-      >
-        Dissolve pact
-      </button>
     </div>
   );
 }
