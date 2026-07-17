@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./PactForm.css";
 
@@ -64,5 +65,14 @@ function PactForm({ partner, onCancel }) {
     </div>
   );
 }
+
+// describes the shape of the props this component expects
+PactForm.propTypes = {
+  partner: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+  }).isRequired,
+  onCancel: PropTypes.func.isRequired,
+};
 
 export default PactForm;

@@ -36,7 +36,8 @@ export default [
         { allowConstantExport: true },
       ],
       "prettier/prettier": "error",
-      "react/prop-types": "off",
+      // every component's props must be declared with PropTypes
+      "react/prop-types": "error",
     },
     settings: {
       react: {

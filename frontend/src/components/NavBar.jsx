@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
@@ -47,5 +48,15 @@ function NavBar({ currentUser, loading, onLogout }) {
     </nav>
   );
 }
+
+// currentUser is null when nobody is logged in, so it isn't required
+NavBar.propTypes = {
+  currentUser: PropTypes.shape({
+    username: PropTypes.string,
+    displayName: PropTypes.string,
+  }),
+  loading: PropTypes.bool.isRequired,
+  onLogout: PropTypes.func.isRequired,
+};
 
 export default NavBar;

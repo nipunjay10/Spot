@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./UserCard.css";
 
 function UserCard({ user, onPropose }) {
@@ -13,5 +14,16 @@ function UserCard({ user, onPropose }) {
     </div>
   );
 }
+
+// describes the shape of the props this component expects
+UserCard.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    favoriteGym: PropTypes.string,
+  }).isRequired,
+  onPropose: PropTypes.func.isRequired,
+};
 
 export default UserCard;

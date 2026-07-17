@@ -11,8 +11,8 @@ import PactDetailPage from "./pages/PactDetailPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  // check if there is a logged in session yet: used by Navbar, protectedroute and implicity to every route
-  const [loading, setLoading] = useState(true); 
+  // check if there is a logged in session yet: used by Navbar, protectedroute and implicity to every ro
+  const [loading, setLoading] = useState(true);
 
   // on first load, ask the server if we already have a logged-in session
   useEffect(() => {

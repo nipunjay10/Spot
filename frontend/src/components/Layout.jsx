@@ -6,6 +6,7 @@
  * through the Outlet placeholder.
  */
 
+import PropTypes from "prop-types";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import "./Layout.css";
@@ -21,5 +22,15 @@ function Layout({ currentUser, loading, onLogout }) {
     </div>
   );
 }
+
+// currentUser is null when nobody is logged in, so it isn't required
+Layout.propTypes = {
+  currentUser: PropTypes.shape({
+    username: PropTypes.string,
+    displayName: PropTypes.string,
+  }),
+  loading: PropTypes.bool.isRequired,
+  onLogout: PropTypes.func.isRequired,
+};
 
 export default Layout;

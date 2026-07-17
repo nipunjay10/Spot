@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./RegisterPage.css";
 
@@ -37,7 +38,6 @@ function RegisterPage({ onRegister }) {
     }
 
     // server auto-logs-in on register, so tell App.jsx who's logged in now
-    // 
     onRegister(data);
     // send the user to the dashboard
     navigate("/");
@@ -95,5 +95,10 @@ function RegisterPage({ onRegister }) {
     </div>
   );
 }
+
+// describes the shape of the props this component expects
+RegisterPage.propTypes = {
+  onRegister: PropTypes.func.isRequired,
+};
 
 export default RegisterPage;

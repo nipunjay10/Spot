@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./PactCard.css";
 
@@ -38,5 +39,18 @@ function PactCard({ pact, onReload }) {
     </div>
   );
 }
+
+// describes the shape of the props this component expects
+PactCard.propTypes = {
+  pact: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    weeklyTarget: PropTypes.number.isRequired,
+    currentStreak: PropTypes.number.isRequired,
+    partner: PropTypes.shape({
+      displayName: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  onReload: PropTypes.func.isRequired,
+};
 
 export default PactCard;

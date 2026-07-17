@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "../components/ProfileForm";
 import "./ProfilePage.css";
@@ -39,5 +40,15 @@ function ProfilePage({ currentUser, onUserChange }) {
     </div>
   );
 }
+
+// currentUser is null for a moment while the account is being cleared
+ProfilePage.propTypes = {
+  currentUser: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }),
+  onUserChange: PropTypes.func.isRequired,
+};
 
 export default ProfilePage;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
@@ -68,5 +69,10 @@ function LoginPage({ onLogin }) {
     </div>
   );
 }
+
+// describes the shape of the props this component expects
+LoginPage.propTypes = {
+  onLogin: PropTypes.func.isRequired,
+};
 
 export default LoginPage;

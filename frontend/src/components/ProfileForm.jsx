@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./ProfileForm.css";
 
 function ProfileForm({ user, onSave }) {
@@ -80,5 +81,17 @@ function ProfileForm({ user, onSave }) {
     </form>
   );
 }
+
+// describes the shape of the props this component expects
+ProfileForm.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    bio: PropTypes.string,
+    favoriteGym: PropTypes.string,
+  }).isRequired,
+  onSave: PropTypes.func.isRequired,
+};
 
 export default ProfileForm;
