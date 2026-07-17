@@ -26,6 +26,25 @@ async function priorBestWeight(db, userId, name, excludeId = null) {
   return rows.length > 0 ? rows[0].exercises.weight : 0;
 }
 
+// within one session, only the heaviest set of a given exercise name may keep
+// its PR badge — you don't earn two PRs for the same lift in one workout
+function capOnePRPerName(exercises) {
+  // find the index of the heaviest PR-flagged set for each exercise name
+  const bestIndexByName = {};
+  exercises.forEach((ex, i) => {
+    if (!ex.isPR) return;
+    const prev = bestIndexByName[ex.name];
+    if (prev === undefined || ex.weight > exercises[prev].weight) {
+      bestIndexByName[ex.name] = i;
+    }
+  });
+  // clear isPR on any PR-flagged set that isn't the heaviest of its name
+  const keep = new Set(Object.values(bestIndexByName));
+  return exercises.map((ex, i) =>
+    ex.isPR && !keep.has(i) ? { ...ex, isPR: false } : ex,
+  );
+}
+
 // READ all sessions for a user
 router.get("/", ensureAuthenticated, async (req, res) => {
   try {
@@ -94,9 +113,12 @@ router.put("/:id", ensureAuthenticated, async (req, res) => {
       }),
     );
 
+    // if the same lift appears twice, only its heaviest set keeps the PR badge
+    const capped = capOnePRPerName(exercises);
+
     const updates = {
       date: req.body.date,
-      exercises: exercises,
+      exercises: capped,
       notes: req.body.notes || "",
     };
     await db
@@ -155,10 +177,13 @@ router.post("/", ensureAuthenticated, async (req, res) => {
       }),
     );
 
+    // if the same lift appears twice, only its heaviest set keeps the PR badge
+    const capped = capOnePRPerName(exercisesWithPRFlag);
+
     const session = {
       userId,
       date: req.body.date,
-      exercises: exercisesWithPRFlag,
+      exercises: capped,
       notes: req.body.notes || "",
       createdAt: new Date(),
     };

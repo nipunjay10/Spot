@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SessionCard from "../components/SessionCard";
+import PRList from "../components/PRList";
 import "./HistoryPage.css";
 
 function HistoryPage() {
@@ -74,6 +75,9 @@ function HistoryPage() {
           onChange={(e) => setToDate(e.target.value)}
         />
       </div>
+
+      {/* records board — driven by the exercise search only, not the date range */}
+      <PRList sessions={sessions} exerciseFilter={exerciseFilter} />
 
       {filtered.length === 0 ? (
         <p>No sessions match. Log a workout to get started.</p>

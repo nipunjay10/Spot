@@ -69,6 +69,45 @@ function addWeek(sessions, userId, weekStart, count) {
   }
 }
 
+// Mark personal records on the seed data. For each user, walk their sessions
+// oldest-first: a set is a PR the first time its weight beats their running
+// best for that exercise name. Mirrors the API — cross-session best plus at
+// most one PR per exercise name per workout. Mutates the sessions in place.
+function flagSeedPRs(sessions) {
+  // group every session by the user it belongs to
+  const byUser = {};
+  for (const s of sessions) {
+    const key = s.userId.toString();
+    if (!byUser[key]) byUser[key] = [];
+    byUser[key].push(s);
+  }
+
+  for (const userSessions of Object.values(byUser)) {
+    // oldest first, so a running best builds up as we go
+    userSessions.sort((a, b) => a.date.localeCompare(b.date));
+    const bestByName = {};
+    for (const s of userSessions) {
+      // pick the single heaviest set per name that also beats history
+      const prIndexByName = {};
+      s.exercises.forEach((ex, i) => {
+        const prevBest = bestByName[ex.name] || 0;
+        if (ex.weight > prevBest) {
+          const cur = prIndexByName[ex.name];
+          if (cur === undefined || ex.weight > s.exercises[cur].weight) {
+            prIndexByName[ex.name] = i;
+          }
+        }
+      });
+      const keep = new Set(Object.values(prIndexByName));
+      s.exercises = s.exercises.map((ex, i) => ({ ...ex, isPR: keep.has(i) }));
+      // advance each name's running best only after this session is resolved
+      for (const ex of s.exercises) {
+        bestByName[ex.name] = Math.max(bestByName[ex.name] || 0, ex.weight);
+      }
+    }
+  }
+}
+
 async function loadSessions() {
   const client = new MongoClient(process.env.MONGO_URI);
   await client.connect();
@@ -138,6 +177,9 @@ async function loadSessions() {
   });
 
   const allSessions = [...keptRaw, ...newSessions];
+
+  // work out PR badges across each user's full history before inserting
+  flagSeedPRs(allSessions);
 
   await db.collection("sessions").deleteMany({});
   const result = await db.collection("sessions").insertMany(allSessions);
