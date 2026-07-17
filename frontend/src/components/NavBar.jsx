@@ -33,6 +33,9 @@ function NavBar({ currentUser, loading, onLogout }) {
             <Link to="/">Dashboard</Link>
             <Link to="/search">Find a Partner</Link>
             <Link to="/profile">Profile</Link>
+            <Link to="/log">Log Workout</Link>
+            <Link to="/history">History</Link>
+            <Link to="/challenges">Challenges</Link>
             <button type="button" onClick={handleLogoutClick}>
               Logout
             </button>

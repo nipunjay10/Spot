@@ -1,0 +1,33 @@
+.log-workout-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.log-result {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.log-result ul {
+  list-style: none;
+  padding: 0;
+}
+
+.log-result li {
+  padding: 6px 0;
+}
+
+.log-result li.pr-hit {
+  font-weight: 600;
+}
+
+.pr-badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  background: #16a34a;
+  color: white;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
