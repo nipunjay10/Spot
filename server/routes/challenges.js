@@ -1,167 +1,255 @@
 import express from "express";
+import { challengesDb } from "../db/challengesDb.js";
+import { acceptancesDb } from "../db/acceptancesDb.js";
+import { usersDb } from "../db/usersDb.js";
+import { requireValidId } from "../middleware/requireValidId.js";
+
 const router = express.Router();
-import { connectDB } from "../db/connection.js";
-import { ObjectId } from "mongodb";
-import { ensureAuthenticated } from "../middleware/ensureAuthenticated.js";
 
-// CRUD operations for challenges
+// today as a plain YYYY-MM-DD string, so it compares directly against the
+// startDate/endDate strings a challenge stores (both are zero-padded ISO dates)
+function todayString() {
+  return new Date().toISOString().slice(0, 10);
+}
 
-// CREATE a challenge
-router.post("/", ensureAuthenticated, async (req, res) => {
+// how many calendar days a date window covers, inclusive of both ends —
+// used to sanity-check that a target isn't larger than the window
+function daysInRange(startDate, endDate) {
+  const start = new Date(startDate + "T12:00:00Z");
+  const end = new Date(endDate + "T12:00:00Z");
+  const diffMs = end.getTime() - start.getTime();
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
+}
+
+// Decide a finished challenge's outcome from how many days the user marked done.
+// A challenge is only ever resolved once its window has closed.
+function resolveStatus(acceptance, challenge) {
+  return acceptance.completedDays.length >= challenge.targetDays
+    ? "completed"
+    : "failed";
+}
+
+// CREATE a challenge template
+router.post("/", async (req, res) => {
   try {
-    const db = await connectDB();
-    const challenge = {
-      creatorId: req.user._id,
-      accepterId: null,
-      description: req.body.description,
-      startDate: req.body.startDate,
-      endDate: req.body.endDate,
-      status: "open",
-      proofEntries: [],
-      createdAt: new Date(),
-    };
-    const result = await db.collection("challenges").insertOne(challenge);
-    res.status(201).json({ _id: result.insertedId, ...challenge });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+    const { description, startDate, endDate, targetDays } = req.body;
 
-// READ all open challenges (the public feed)
-router.get("/", ensureAuthenticated, async (req, res) => {
-  try {
-    const db = await connectDB();
-    const status = req.query.status; // optional filter, e.g. ?status=open
-    // only allow known statuses through, so the query can't smuggle in a mongo operator
-    const allowed = ["open", "accepted", "completed", "failed"];
-    const filter = allowed.includes(status) ? { status: status } : {};
-    const challenges = await db
-      .collection("challenges")
-      .find(filter)
-      .sort({ createdAt: -1 })
-      .toArray();
-    res.json(challenges);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ACCEPT a challenge
-router.put("/:id/accept", ensureAuthenticated, async (req, res) => {
-  try {
-    const db = await connectDB();
-    const challenge = await db
-      .collection("challenges")
-      .findOne({ _id: new ObjectId(req.params.id) });
-
-    if (!challenge)
-      return res.status(404).json({ error: "Challenge not found" });
-    if (challenge.status !== "open") {
-      return res.status(400).json({ error: "Challenge is not open" });
+    // the window has to make sense before anyone can work toward it
+    if (!description || !startDate || !endDate) {
+      return res
+        .status(400)
+        .json({ error: "description, startDate and endDate are required" });
     }
-    // a challenge needs two people, so the creator cannot take their own
-    if (challenge.creatorId.toString() === req.user._id.toString()) {
+    // a challenge posted in the past would be hidden the moment it's created
+    if (startDate < todayString()) {
+      return res
+        .status(400)
+        .json({ error: "Start date can't be in the past" });
+    }
+    if (endDate < startDate) {
+      return res
+        .status(400)
+        .json({ error: "End date must be on or after the start date" });
+    }
+    // targetDays is how many days the accepter must complete, 1..windowLength
+    const windowLength = daysInRange(startDate, endDate);
+    if (
+      !Number.isInteger(targetDays) ||
+      targetDays < 1 ||
+      targetDays > windowLength
+    ) {
+      return res.status(400).json({
+        error: `Pick a target from 1 to ${windowLength} day${windowLength === 1 ? "" : "s"}`,
+      });
+    }
+
+    // no accepter/status/proof — those live on each person's acceptance now
+    const challenge = await challengesDb.create({
+      creatorId: req.user._id,
+      description,
+      startDate,
+      endDate,
+      targetDays,
+      createdAt: new Date(),
+    });
+
+    res.status(201).json(challenge);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// READ every challenge, each enriched for the logged-in user with the creator's
+// profile and this user's own acceptance (if any). Expired challenges the user
+// never accepted are dropped, and any accepted challenge whose window has closed
+// is resolved to completed/failed on the way out.
+router.get("/", async (req, res) => {
+  try {
+    const myId = req.user._id.toString();
+    const today = todayString();
+    const challenges = await challengesDb.findAll();
+
+    // look up every creator once, so we don't hit the users collection per card
+    const creatorIds = [...new Set(challenges.map((c) => c.creatorId.toString()))];
+    const creators = await Promise.all(
+      creatorIds.map((id) => usersDb.findById(id)),
+    );
+    // map creator id -> sanitized profile for a quick lookup below
+    const creatorById = {};
+    creators.forEach((user) => {
+      if (user) creatorById[user._id.toString()] = usersDb.sanitize(user);
+    });
+
+    const enriched = [];
+    for (const challenge of challenges) {
+      let myAcceptance = await acceptancesDb.findForUserAndChallenge(
+        myId,
+        challenge._id,
+      );
+
+      // a still-open acceptance past its end date gets resolved and saved once
+      if (
+        myAcceptance &&
+        myAcceptance.status === "accepted" &&
+        challenge.endDate < today
+      ) {
+        const status = resolveStatus(myAcceptance, challenge);
+        myAcceptance = await acceptancesDb.update(myAcceptance._id, { status });
+      }
+
+      // an expired challenge you never accepted is dead to everyone — hide it
+      if (!myAcceptance && challenge.endDate < today) {
+        continue;
+      }
+
+      enriched.push({
+        ...challenge,
+        creator: creatorById[challenge.creatorId.toString()] || null,
+        myAcceptance: myAcceptance || null,
+      });
+    }
+
+    res.json(enriched);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ACCEPT a challenge — creates this user's own acceptance without touching the
+// shared challenge, so it stays open for everyone else
+router.put("/:id/accept", requireValidId, async (req, res) => {
+  try {
+    const myId = req.user._id.toString();
+    const challenge = await challengesDb.findById(req.objectId);
+    if (!challenge) {
+      return res.status(404).json({ error: "Challenge not found" });
+    }
+    // a closed window can't be started
+    if (challenge.endDate < todayString()) {
+      return res.status(400).json({ error: "Challenge has already ended" });
+    }
+    // you can't take on your own challenge
+    if (challenge.creatorId.toString() === myId) {
       return res
         .status(400)
         .json({ error: "You cannot accept your own challenge" });
     }
-
-    await db.collection("challenges").updateOne(
-      { _id: new ObjectId(req.params.id) },
-      {
-        $set: {
-          accepterId: req.user._id,
-          status: "accepted",
-        },
-      },
+    // one acceptance per person per challenge
+    const existing = await acceptancesDb.findForUserAndChallenge(
+      myId,
+      challenge._id,
     );
-    res.json({ message: "Challenge accepted" });
+    if (existing) {
+      return res
+        .status(409)
+        .json({ error: "You have already accepted this challenge" });
+    }
+
+    const acceptance = await acceptancesDb.create({
+      challengeId: challenge._id,
+      userId: req.user._id,
+      status: "accepted",
+      completedDays: [],
+      acceptedAt: new Date(),
+    });
+
+    res.status(201).json(acceptance);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// LOG a proof entry
-router.post("/:id/proof", ensureAuthenticated, async (req, res) => {
+// MARK a day done (or undo it) on the caller's acceptance
+router.post("/:id/day", requireValidId, async (req, res) => {
   try {
-    const db = await connectDB();
-    const challenge = await db
-      .collection("challenges")
-      .findOne({ _id: new ObjectId(req.params.id) });
-
-    if (!challenge)
+    const myId = req.user._id.toString();
+    const challenge = await challengesDb.findById(req.objectId);
+    if (!challenge) {
       return res.status(404).json({ error: "Challenge not found" });
-    if (challenge.status !== "accepted") {
+    }
+
+    const acceptance = await acceptancesDb.findForUserAndChallenge(
+      myId,
+      challenge._id,
+    );
+    // only someone who accepted the challenge can log days for it
+    if (!acceptance) {
+      return res.status(403).json({ error: "You have not accepted this challenge" });
+    }
+    // once it's resolved the window is closed and nothing more can be logged
+    if (acceptance.status !== "accepted") {
+      return res.status(400).json({ error: "This challenge is already finished" });
+    }
+
+    // the day being marked has to fall inside the challenge window
+    const date = req.body.date;
+    if (!date || date < challenge.startDate || date > challenge.endDate) {
       return res
         .status(400)
-        .json({ error: "Challenge must be accepted first" });
-    }
-    // only the person who accepted the challenge can log proof for it
-    if (
-      !challenge.accepterId ||
-      challenge.accepterId.toString() !== req.user._id.toString()
-    ) {
-      return res.status(403).json({ error: "Not your challenge to log" });
+        .json({ error: "That date is outside the challenge window" });
     }
 
-    // force a real boolean so the pass/fail check below can't be skewed by a truthy string
-    const completed = req.body.completed === true;
+    // marking is a toggle: on if the day isn't there yet, off if it is.
+    // one entry per date keeps the count honest. (undo is fine here because the
+    // challenge is still accepted — a finished one is locked out above.)
+    const already = acceptance.completedDays.includes(date);
+    const completedDays = already
+      ? acceptance.completedDays.filter((d) => d !== date)
+      : [...acceptance.completedDays, date].sort();
 
-    const newEntry = {
-      date: req.body.date,
-      completed: completed,
-      notes: req.body.notes || "",
-    };
+    // hitting the target completes the challenge right away and moves it to Done
+    const status =
+      completedDays.length >= challenge.targetDays ? "completed" : "accepted";
 
-    const updatedEntries = [...challenge.proofEntries, newEntry];
-
-    // If today's entry is for the final day of the window, resolve the challenge
-    let newStatus = challenge.status;
-    if (req.body.date === challenge.endDate) {
-      const allCompleted = updatedEntries.every((entry) => entry.completed);
-      newStatus = allCompleted ? "completed" : "failed";
-    } else if (!completed) {
-      // missing a day early fails it immediately — no point continuing
-      newStatus = "failed";
-    }
-
-    await db
-      .collection("challenges")
-      .updateOne(
-        { _id: new ObjectId(req.params.id) },
-        { $set: { proofEntries: updatedEntries, status: newStatus } },
-      );
-
-    res.json({ proofEntries: updatedEntries, status: newStatus });
+    const updated = await acceptancesDb.update(acceptance._id, {
+      completedDays,
+      status,
+    });
+    res.json(updated);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// DELETE a challenge
-router.delete("/:id", ensureAuthenticated, async (req, res) => {
+// DELETE a challenge — creator only, and only while nobody has accepted it,
+// since deleting would otherwise wipe other people's progress
+router.delete("/:id", requireValidId, async (req, res) => {
   try {
-    const db = await connectDB();
-    const existing = await db
-      .collection("challenges")
-      .findOne({ _id: new ObjectId(req.params.id) });
-    if (!existing) {
+    const challenge = await challengesDb.findById(req.objectId);
+    if (!challenge) {
       return res.status(404).json({ error: "Challenge not found" });
     }
-    // only the person who posted the challenge can delete it
-    if (existing.creatorId.toString() !== req.user._id.toString()) {
+    if (challenge.creatorId.toString() !== req.user._id.toString()) {
       return res.status(403).json({ error: "Not your challenge" });
     }
-    // once someone has accepted, deleting would wipe their proof entries too
-    if (existing.status !== "open") {
+    const accepted = await acceptancesDb.countForChallenge(challenge._id);
+    if (accepted > 0) {
       return res
         .status(400)
         .json({ error: "Cannot delete a challenge someone has accepted" });
     }
 
-    await db
-      .collection("challenges")
-      .deleteOne({ _id: new ObjectId(req.params.id) });
+    await challengesDb.remove(challenge._id);
     res.json({ message: "Challenge deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });

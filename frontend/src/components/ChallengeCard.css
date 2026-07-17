@@ -53,9 +53,21 @@
   color: #991b1b;
 }
 
+.challenge-creator {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+
 .challenge-window {
   color: #555;
   font-size: 0.9rem;
+}
+
+.challenge-target {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 0;
 }
 
 .proof-form {

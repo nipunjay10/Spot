@@ -12,17 +12,24 @@ function todayString() {
 }
 
 function ChallengeCard({ challenge, currentUser, onChanged }) {
-  // proof-entry form state (only used when the challenge is accepted)
-  const [proofDate, setProofDate] = useState(todayString);
-  const [completed, setCompleted] = useState(false);
-  const [proofNotes, setProofNotes] = useState("");
+  // which day the accepter is marking done (defaults to today)
+  const [dayToLog, setDayToLog] = useState(todayString);
   const [error, setError] = useState("");
 
   // the creator can delete their own challenge, but can't accept it
   const isCreator = challenge.creatorId === currentUser._id;
-  const isAccepter = challenge.accepterId === currentUser._id;
-  // plenty of challenges are between two other people, so only claim a role we actually have
-  const showRole = challenge.status !== "open" && (isCreator || isAccepter);
+  // myAcceptance is this user's own record for the challenge, or null
+  const acceptance = challenge.myAcceptance;
+  const isAccepter = Boolean(acceptance);
+
+  // an accepter's card carries a status; an untouched open challenge shows "open"
+  const status = acceptance ? acceptance.status : "open";
+  // days marked done so far, against the challenge's target
+  const doneCount = acceptance ? acceptance.completedDays.length : 0;
+  // the mark button toggles, so its label depends on whether the picked day
+  // is already marked — clicking a marked day unmarks it
+  const dayAlreadyMarked =
+    acceptance && acceptance.completedDays.includes(dayToLog);
 
   // pull the server's message off a failed response so the user sees why
   async function readError(res, fallback) {
@@ -43,26 +50,19 @@ function ChallengeCard({ challenge, currentUser, onChanged }) {
     onChanged();
   }
 
-  async function handleLogProof(e) {
+  async function handleMarkDay(e) {
     e.preventDefault();
     setError("");
-    const res = await fetch(`/api/challenges/${challenge._id}/proof`, {
+    // the server toggles the day on/off in the accepter's completedDays
+    const res = await fetch(`/api/challenges/${challenge._id}/day`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        date: proofDate,
-        completed,
-        notes: proofNotes,
-      }),
+      body: JSON.stringify({ date: dayToLog }),
     });
     if (!res.ok) {
-      setError(await readError(res, "Could not log proof"));
+      setError(await readError(res, "Could not log day"));
       return;
     }
-    // back to a fresh entry for today
-    setProofDate(todayString());
-    setProofNotes("");
-    setCompleted(false);
     onChanged();
   }
 
@@ -84,71 +84,60 @@ function ChallengeCard({ challenge, currentUser, onChanged }) {
     <div className="challenge-card">
       <div className="challenge-card-header">
         <strong>{challenge.description}</strong>
-        {showRole && (
-          <span className="challenge-role">
-            {isCreator ? "Posted by you" : "You accepted"}
-          </span>
-        )}
-        <span className={`challenge-status status-${challenge.status}`}>
-          {challenge.status}
-        </span>
+        {isCreator && <span className="challenge-role">Posted by you</span>}
+        <span className={`challenge-status status-${status}`}>{status}</span>
       </div>
+
+      {/* who created the challenge, shown as DisplayName (@username) */}
+      {challenge.creator && (
+        <p className="challenge-creator">
+          by {challenge.creator.displayName} (@{challenge.creator.username})
+        </p>
+      )}
 
       <p className="challenge-window">
         {challenge.startDate} → {challenge.endDate}
       </p>
+      <p className="challenge-target">
+        Goal: complete on {challenge.targetDays} day
+        {challenge.targetDays === 1 ? "" : "s"}
+        {isAccepter && ` — ${doneCount} / ${challenge.targetDays} done`}
+      </p>
 
-      {/* OPEN: anyone but the creator can accept */}
-      {challenge.status === "open" && !isCreator && (
+      {/* OPEN to you: anyone but the creator can accept, even if others have */}
+      {!isAccepter && !isCreator && (
         <button type="button" onClick={handleAccept}>
           Accept challenge
         </button>
       )}
-      {challenge.status === "open" && isCreator && (
-        <p className="challenge-note">Waiting for someone to accept</p>
+      {!isAccepter && isCreator && (
+        <p className="challenge-note">Open for others to accept</p>
       )}
 
-      {/* ACCEPTED: only the accepter logs proof */}
-      {challenge.status === "accepted" && isAccepter && (
-        <form className="proof-form" onSubmit={handleLogProof}>
-          <label htmlFor={`proofDate-${challenge._id}`}>Log a day</label>
+      {/* ACCEPTED by you: mark any day in the window done */}
+      {isAccepter && status === "accepted" && (
+        <form className="proof-form" onSubmit={handleMarkDay}>
+          <label htmlFor={`dayToLog-${challenge._id}`}>Mark a day done</label>
           <input
-            id={`proofDate-${challenge._id}`}
+            id={`dayToLog-${challenge._id}`}
             type="date"
-            value={proofDate}
-            onChange={(e) => setProofDate(e.target.value)}
+            min={challenge.startDate}
+            max={challenge.endDate}
+            value={dayToLog}
+            onChange={(e) => setDayToLog(e.target.value)}
             required
           />
-          <label className="proof-completed">
-            <input
-              type="checkbox"
-              checked={completed}
-              onChange={(e) => setCompleted(e.target.checked)}
-            />
-            Completed today
-          </label>
-          <input
-            type="text"
-            placeholder="notes (optional)"
-            value={proofNotes}
-            onChange={(e) => setProofNotes(e.target.value)}
-          />
-          <button type="submit">Log proof</button>
+          <button type="submit">
+            {dayAlreadyMarked ? "Unmark this day" : "Mark this day done"}
+          </button>
         </form>
       )}
-      {/* the creator waits — only the accepter can log proof */}
-      {challenge.status === "accepted" && isCreator && (
-        <p className="challenge-note">Waiting on your partner to log proof</p>
-      )}
 
-      {/* show proof entries if any exist */}
-      {challenge.proofEntries.length > 0 && (
+      {/* list the days marked done so far */}
+      {isAccepter && acceptance.completedDays.length > 0 && (
         <ul className="proof-list">
-          {challenge.proofEntries.map((entry, i) => (
-            <li key={i}>
-              {entry.date}: {entry.completed ? "✓" : "✗"}
-              {entry.notes && ` — ${entry.notes}`}
-            </li>
+          {acceptance.completedDays.map((date) => (
+            <li key={date}>{date}: ✓</li>
           ))}
         </ul>
       )}
@@ -156,7 +145,7 @@ function ChallengeCard({ challenge, currentUser, onChanged }) {
       {error && <p className="challenge-card-error">{error}</p>}
 
       {/* only the creator deletes, and only while nobody has accepted yet */}
-      {isCreator && challenge.status === "open" && (
+      {isCreator && (
         <button
           type="button"
           className="challenge-delete"
@@ -173,18 +162,18 @@ ChallengeCard.propTypes = {
   challenge: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     creatorId: PropTypes.string.isRequired,
-    accepterId: PropTypes.string,
     description: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
     endDate: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
-    proofEntries: PropTypes.arrayOf(
-      PropTypes.shape({
-        date: PropTypes.string,
-        completed: PropTypes.bool,
-        notes: PropTypes.string,
-      }),
-    ).isRequired,
+    targetDays: PropTypes.number.isRequired,
+    creator: PropTypes.shape({
+      username: PropTypes.string,
+      displayName: PropTypes.string,
+    }),
+    myAcceptance: PropTypes.shape({
+      status: PropTypes.string.isRequired,
+      completedDays: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }),
   }).isRequired,
   currentUser: PropTypes.shape({
     _id: PropTypes.string.isRequired,

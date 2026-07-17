@@ -3,6 +3,26 @@ import PropTypes from "prop-types";
 import ChallengeSection from "../components/ChallengeSection";
 import "./ChallengesPage.css";
 
+// how many days a start→end window covers, counting both ends.
+// returns 0 until both dates are set (or if end is before start).
+function daysInRange(startDate, endDate) {
+  if (!startDate || !endDate || endDate < startDate) return 0;
+  const start = new Date(startDate + "T12:00:00Z");
+  const end = new Date(endDate + "T12:00:00Z");
+  const diffMs = end.getTime() - start.getTime();
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
+}
+
+// today as YYYY-MM-DD, from local parts so the date can't slip a day.
+// used to stop a challenge from being posted in the past.
+function todayString() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 function ChallengesPage({ currentUser }) {
   const [challenges, setChallenges] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,12 +31,11 @@ function ChallengesPage({ currentUser }) {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [targetDays, setTargetDays] = useState(3);
   const [error, setError] = useState("");
 
-  // each section filters on its own, and starts out showing everything
+  // only the Open section filters — Accepted and Done are always just yours
   const [openFilter, setOpenFilter] = useState("all");
-  const [acceptedFilter, setAcceptedFilter] = useState("all");
-  const [doneFilter, setDoneFilter] = useState("all");
 
   useEffect(() => {
     loadChallenges();
@@ -35,11 +54,20 @@ function ChallengesPage({ currentUser }) {
   async function handleCreate(e) {
     e.preventDefault();
     setError("");
+    // the target can't exceed the window, so clamp it to the day count in case
+    // the range shrank after the target was chosen
+    const window = daysInRange(startDate, endDate);
+    const clampedTarget = Math.min(targetDays, window);
     // no creatorId — the server reads it from the session
     const res = await fetch("/api/challenges", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ description, startDate, endDate }),
+      body: JSON.stringify({
+        description,
+        startDate,
+        endDate,
+        targetDays: clampedTarget,
+      }),
     });
     const data = await res.json();
     if (!res.ok) {
@@ -50,6 +78,7 @@ function ChallengesPage({ currentUser }) {
     setDescription("");
     setStartDate("");
     setEndDate("");
+    setTargetDays(3);
     loadChallenges();
   }
 
@@ -57,43 +86,48 @@ function ChallengesPage({ currentUser }) {
     return null;
   }
 
-  // the two roles a challenge can have relative to you
-  const isCreator = (c) => c.creatorId === currentUser._id;
-  const isAccepter = (c) => c.accepterId === currentUser._id;
-  // most challenges are between two other people — these are the ones you're in
-  const isMine = (c) => isCreator(c) || isAccepter(c);
+  // a challenge can't start in the past, and can't end before it starts
+  const today = todayString();
 
-  // "all" keeps the list as-is, so a section only shrinks once you pick a side
-  function applyFilter(list, filter) {
+  // the target can be anywhere from 1 up to the number of days in the window,
+  // so build that list of options from whatever dates are currently picked
+  const windowLength = daysInRange(startDate, endDate);
+  const targetOptions = [];
+  for (let n = 1; n <= windowLength; n++) {
+    targetOptions.push(n);
+  }
+
+  // your relationship to a challenge comes from the creator id and your own
+  // acceptance record (the server attaches myAcceptance for the logged-in user)
+  const isCreator = (c) => c.creatorId === currentUser._id;
+
+  // "all" keeps the list as-is, so the section only shrinks once you pick a side
+  function applyOpenFilter(list, filter) {
     if (filter === "mine") {
       return list.filter(isCreator);
     }
-    // an open challenge has no accepter yet, so "could accept" is everyone else's
+    // you can accept any open challenge that isn't your own
     if (filter === "theirs") {
       return list.filter((c) => !isCreator(c));
-    }
-    if (filter === "accepted-by-me") {
-      return list.filter(isAccepter);
     }
     return list;
   }
 
-  // split into the three lifecycle sections
-  // open stays the whole feed, since that's where you find someone to match with
-  const open = applyFilter(
-    challenges.filter((c) => c.status === "open"),
+  // Open = anything you haven't accepted (the server already hides expired ones).
+  // It stays a shared pool, so you see it whether or not others have accepted.
+  const open = applyOpenFilter(
+    challenges.filter((c) => !c.myAcceptance),
     openFilter,
   );
-  // accepted and done are about you, so they only show challenges you're in
-  const accepted = applyFilter(
-    challenges.filter((c) => c.status === "accepted" && isMine(c)),
-    acceptedFilter,
+  // Accepted and Done read straight off your own acceptance status
+  const accepted = challenges.filter(
+    (c) => c.myAcceptance && c.myAcceptance.status === "accepted",
   );
-  const done = applyFilter(
-    challenges.filter(
-      (c) => (c.status === "completed" || c.status === "failed") && isMine(c),
-    ),
-    doneFilter,
+  const done = challenges.filter(
+    (c) =>
+      c.myAcceptance &&
+      (c.myAcceptance.status === "completed" ||
+        c.myAcceptance.status === "failed"),
   );
 
   return (
@@ -117,6 +151,7 @@ function ChallengesPage({ currentUser }) {
             <input
               id="startDate"
               type="date"
+              min={today}
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               required
@@ -127,12 +162,36 @@ function ChallengesPage({ currentUser }) {
             <input
               id="endDate"
               type="date"
+              min={startDate || today}
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               required
             />
           </div>
         </div>
+        <label htmlFor="targetDays">Complete on how many days?</label>
+        <select
+          id="targetDays"
+          // the options only exist once a valid date range is picked
+          value={windowLength === 0 ? "" : Math.min(targetDays, windowLength)}
+          onChange={(e) => setTargetDays(Number(e.target.value))}
+          disabled={windowLength === 0}
+          required
+        >
+          {windowLength === 0 && (
+            // two different empty states: no dates yet vs. an end before start
+            <option value="">
+              {!startDate || !endDate
+                ? "Pick start and end dates first"
+                : "End date must be on or after the start date"}
+            </option>
+          )}
+          {targetOptions.map((n) => (
+            <option key={n} value={n}>
+              {n} day{n === 1 ? "" : "s"}
+            </option>
+          ))}
+        </select>
         {error && <p className="challenge-error">{error}</p>}
         <button type="submit">Post challenge</button>
       </form>
@@ -155,14 +214,6 @@ function ChallengesPage({ currentUser }) {
 
       <ChallengeSection
         title="Accepted"
-        filterId="acceptedFilter"
-        filterValue={acceptedFilter}
-        onFilterChange={setAcceptedFilter}
-        filterOptions={[
-          { value: "all", label: "All" },
-          { value: "mine", label: "Posted by me" },
-          { value: "accepted-by-me", label: "Accepted by me" },
-        ]}
         challenges={accepted}
         emptyMessage="Nothing accepted yet."
         currentUser={currentUser}
@@ -171,14 +222,6 @@ function ChallengesPage({ currentUser }) {
 
       <ChallengeSection
         title="Done"
-        filterId="doneFilter"
-        filterValue={doneFilter}
-        onFilterChange={setDoneFilter}
-        filterOptions={[
-          { value: "all", label: "All" },
-          { value: "mine", label: "Posted by me" },
-          { value: "accepted-by-me", label: "Accepted by me" },
-        ]}
         challenges={done}
         emptyMessage="No finished challenges."
         currentUser={currentUser}
