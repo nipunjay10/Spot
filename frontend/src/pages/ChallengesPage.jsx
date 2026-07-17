@@ -13,6 +13,11 @@ function ChallengesPage({ currentUser }) {
   const [endDate, setEndDate] = useState("");
   const [error, setError] = useState("");
 
+  // each section filters on its own, and starts out showing everything
+  const [openFilter, setOpenFilter] = useState("all");
+  const [acceptedFilter, setAcceptedFilter] = useState("all");
+  const [doneFilter, setDoneFilter] = useState("all");
+
   useEffect(() => {
     loadChallenges();
   }, []);
@@ -52,19 +57,43 @@ function ChallengesPage({ currentUser }) {
     return null;
   }
 
+  // the two roles a challenge can have relative to you
+  const isCreator = (c) => c.creatorId === currentUser._id;
+  const isAccepter = (c) => c.accepterId === currentUser._id;
   // most challenges are between two other people — these are the ones you're in
-  const isMine = (c) =>
-    c.creatorId === currentUser._id || c.accepterId === currentUser._id;
+  const isMine = (c) => isCreator(c) || isAccepter(c);
+
+  // "all" keeps the list as-is, so a section only shrinks once you pick a side
+  function applyFilter(list, filter) {
+    if (filter === "mine") {
+      return list.filter(isCreator);
+    }
+    // an open challenge has no accepter yet, so "could accept" is everyone else's
+    if (filter === "theirs") {
+      return list.filter((c) => !isCreator(c));
+    }
+    if (filter === "accepted-by-me") {
+      return list.filter(isAccepter);
+    }
+    return list;
+  }
 
   // split into the three lifecycle sections
   // open stays the whole feed, since that's where you find someone to match with
-  const open = challenges.filter((c) => c.status === "open");
-  // accepted and done are about you, so they only show challenges you're in
-  const accepted = challenges.filter(
-    (c) => c.status === "accepted" && isMine(c),
+  const open = applyFilter(
+    challenges.filter((c) => c.status === "open"),
+    openFilter,
   );
-  const done = challenges.filter(
-    (c) => (c.status === "completed" || c.status === "failed") && isMine(c),
+  // accepted and done are about you, so they only show challenges you're in
+  const accepted = applyFilter(
+    challenges.filter((c) => c.status === "accepted" && isMine(c)),
+    acceptedFilter,
+  );
+  const done = applyFilter(
+    challenges.filter(
+      (c) => (c.status === "completed" || c.status === "failed") && isMine(c),
+    ),
+    doneFilter,
   );
 
   return (
@@ -109,9 +138,26 @@ function ChallengesPage({ currentUser }) {
       </form>
 
       <section className="challenge-section">
-        <h2>Open</h2>
+        <div className="challenge-section-head">
+          <h2>Open</h2>
+          <label htmlFor="openFilter">Show</label>
+          <select
+            id="openFilter"
+            value={openFilter}
+            onChange={(e) => setOpenFilter(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="mine">Posted by me</option>
+            <option value="theirs">I could accept</option>
+          </select>
+        </div>
         {open.length === 0 ? (
-          <p>No open challenges.</p>
+          // an active filter is a different kind of empty than an empty feed
+          <p>
+            {openFilter === "all"
+              ? "No open challenges."
+              : "None match this filter."}
+          </p>
         ) : (
           <div className="challenge-scroll">
             {open.map((c) => (
@@ -127,9 +173,25 @@ function ChallengesPage({ currentUser }) {
       </section>
 
       <section className="challenge-section">
-        <h2>Accepted</h2>
+        <div className="challenge-section-head">
+          <h2>Accepted</h2>
+          <label htmlFor="acceptedFilter">Show</label>
+          <select
+            id="acceptedFilter"
+            value={acceptedFilter}
+            onChange={(e) => setAcceptedFilter(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="mine">Posted by me</option>
+            <option value="accepted-by-me">Accepted by me</option>
+          </select>
+        </div>
         {accepted.length === 0 ? (
-          <p>Nothing accepted yet.</p>
+          <p>
+            {acceptedFilter === "all"
+              ? "Nothing accepted yet."
+              : "None match this filter."}
+          </p>
         ) : (
           <div className="challenge-scroll">
             {accepted.map((c) => (
@@ -145,9 +207,25 @@ function ChallengesPage({ currentUser }) {
       </section>
 
       <section className="challenge-section">
-        <h2>Done</h2>
+        <div className="challenge-section-head">
+          <h2>Done</h2>
+          <label htmlFor="doneFilter">Show</label>
+          <select
+            id="doneFilter"
+            value={doneFilter}
+            onChange={(e) => setDoneFilter(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="mine">Posted by me</option>
+            <option value="accepted-by-me">Accepted by me</option>
+          </select>
+        </div>
         {done.length === 0 ? (
-          <p>No finished challenges.</p>
+          <p>
+            {doneFilter === "all"
+              ? "No finished challenges."
+              : "None match this filter."}
+          </p>
         ) : (
           <div className="challenge-scroll">
             {done.map((c) => (
