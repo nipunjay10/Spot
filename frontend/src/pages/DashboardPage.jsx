@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import PactCard from "../components/PactCard";
 import "./DashboardPage.css";
 
-function DashboardPage({ currentUser }) {
+function DashboardPage() {
   const [pacts, setPacts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -58,12 +57,7 @@ function DashboardPage({ currentUser }) {
             ) : (
               <div className="pact-list">
                 {active.map((pact) => (
-                  <PactCard
-                    key={pact._id}
-                    pact={pact}
-                    currentUser={currentUser}
-                    onChanged={loadPacts}
-                  />
+                  <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
                 ))}
               </div>
             )}
@@ -76,12 +70,7 @@ function DashboardPage({ currentUser }) {
             ) : (
               <div className="pact-list">
                 {outgoing.map((pact) => (
-                  <PactCard
-                    key={pact._id}
-                    pact={pact}
-                    currentUser={currentUser}
-                    onChanged={loadPacts}
-                  />
+                  <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
                 ))}
               </div>
             )}
@@ -94,12 +83,7 @@ function DashboardPage({ currentUser }) {
             ) : (
               <div className="pact-list">
                 {incoming.map((pact) => (
-                  <PactCard
-                    key={pact._id}
-                    pact={pact}
-                    currentUser={currentUser}
-                    onChanged={loadPacts}
-                  />
+                  <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
                 ))}
               </div>
             )}
@@ -109,12 +93,5 @@ function DashboardPage({ currentUser }) {
     </div>
   );
 }
-
-// describes the shape of the props this page expects
-DashboardPage.propTypes = {
-  currentUser: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default DashboardPage;

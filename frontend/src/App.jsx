@@ -65,7 +65,7 @@ function App() {
             path="/"
             element={
               <ProtectedRoute currentUser={currentUser} loading={loading}>
-                <DashboardPage currentUser={currentUser} />
+                <DashboardPage />
               </ProtectedRoute>
             }
           />
