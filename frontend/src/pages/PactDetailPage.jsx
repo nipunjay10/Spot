@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./PactDetailPage.css";
 
 function PactDetailPage() {
@@ -8,6 +8,7 @@ function PactDetailPage() {
   const [pact, setPact] = useState(null);
   const [weeklyTarget, setWeeklyTarget] = useState(1);
   const [error, setError] = useState("");
+  const [loadError, setLoadError] = useState("");
 
   // fetches this pact (with both partners' profiles) from the server.
   // useCallback keeps the same function between renders unless the id
@@ -18,7 +19,11 @@ function PactDetailPage() {
       const data = await res.json();
       setPact(data);
       setWeeklyTarget(data.weeklyTarget);
+      return;
     }
+    // without this the page would sit on "Loading pact..." forever
+    const data = await res.json();
+    setLoadError(data.error || "Could not load this pact");
   }, [id]);
 
   // load the pact when the page mounts, and again if the id in the url changes
@@ -59,6 +64,16 @@ function PactDetailPage() {
     navigate("/");
   }
 
+  // the pact couldn't be loaded at all — say so instead of hanging
+  if (loadError) {
+    return (
+      <div className="pact-detail-page">
+        <p className="pact-detail-error">{loadError}</p>
+        <Link to="/">Back to dashboard</Link>
+      </div>
+    );
+  }
+
   // still waiting on the initial fetch
   if (!pact) {
     return <p>Loading pact...</p>;
@@ -66,11 +81,17 @@ function PactDetailPage() {
 
   return (
     <div className="pact-detail-page">
+      <Link to="/">← Back to dashboard</Link>
       <h1>Pact Detail</h1>
 
       <p>Partner A: {pact.partnerA.displayName}</p>
       <p>Partner B: {pact.partnerB.displayName}</p>
       <p>Current streak: {pact.currentStreak}</p>
+      <p>
+        This week: {pact.partnerA.displayName} {pact.thisWeek.partnerA} of{" "}
+        {pact.thisWeek.target} · {pact.partnerB.displayName}{" "}
+        {pact.thisWeek.partnerB} of {pact.thisWeek.target}
+      </p>
 
       <form onSubmit={handleSaveTarget}>
         <label htmlFor="weeklyTarget">Weekly target</label>

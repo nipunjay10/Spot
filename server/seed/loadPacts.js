@@ -33,14 +33,15 @@ async function loadPacts() {
   const sortedIds = [...idSet].sort();
 
   // pair up consecutive ids (0&1, 2&3, ...) so each user appears in at most one pact
+  // no currentStreak — it's worked out from the sessions whenever a pact is read
   const pacts = [];
   for (let i = 0; i + 1 < sortedIds.length; i += 2) {
     pacts.push({
       partnerA: new ObjectId(sortedIds[i]),
       partnerB: new ObjectId(sortedIds[i + 1]),
       weeklyTarget: 2 + (pacts.length % 3), // cycles through 2, 3, 4
-      currentStreak: pacts.length % 6, // cycles through 0-5
-      createdAt: new Date(),
+      // a year back, so seeded streaks aren't cut short by the pact's own age
+      createdAt: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000),
     });
   }
 

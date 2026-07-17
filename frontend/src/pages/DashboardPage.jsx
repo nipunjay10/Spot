@@ -39,7 +39,7 @@ function DashboardPage() {
       ) : (
         <div className="pact-list">
           {pacts.map((pact) => (
-            <PactCard key={pact._id} pact={pact} onReload={loadPacts} />
+            <PactCard key={pact._id} pact={pact} />
           ))}
         </div>
       )}
