@@ -3,6 +3,15 @@
   margin: 0 auto;
 }
 
+/* each lifecycle group (Active, Proposed by you, Proposed to you) */
+.pact-section {
+  margin-bottom: 24px;
+}
+
+.pact-section h2 {
+  margin-bottom: 8px;
+}
+
 .pact-list {
   display: flex;
   flex-direction: column;
