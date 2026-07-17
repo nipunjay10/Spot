@@ -17,7 +17,7 @@ function PactCard({ pact }) {
 
   return (
     <div className="pact-card">
-      <h2>{pact.partner.displayName}</h2>
+      <h2>  {pact.partner.displayName}</h2>
       <p>
         Weekly target (# of gym sessions) : <b>{pact.weeklyTarget}</b>
       </p>
@@ -32,7 +32,7 @@ function PactCard({ pact }) {
       </p>
 
       <div className="pact-card-actions">
-        <Link to={`/pacts/${pact._id}`}>View details</Link>
+        <Link to={`/pacts/${pact._id}`}>View details / Edit Weekly Target</Link>
       </div>
     </div>
   );

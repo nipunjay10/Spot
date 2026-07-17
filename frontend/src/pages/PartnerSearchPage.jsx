@@ -23,7 +23,7 @@ function PartnerSearchPage() {
   return (
     <div className="partner-search-page">
       <div className="search-header">
-        <h1>Find a Partner</h1>
+        <h1>Make a Pact</h1>
 
         <form onSubmit={handleSearch}>
           <label htmlFor="search">Search by username or display name</label>

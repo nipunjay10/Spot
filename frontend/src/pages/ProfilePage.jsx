@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "../components/ProfileForm";
+import { memberSince } from "../lib/formatDate";
 import "./ProfilePage.css";
 
 function ProfilePage({ currentUser, onUserChange }) {
@@ -31,6 +32,13 @@ function ProfilePage({ currentUser, onUserChange }) {
       {/* username is the login identity, shown here but never editable */}
       <p className="profile-username">@{currentUser.username}</p>
 
+      {/* older accounts may predate this field, so only show it when it's there */}
+      {currentUser.createdAt && (
+        <p className="profile-since">
+          Member since {memberSince(currentUser.createdAt)}
+        </p>
+      )}
+
       <ProfileForm user={currentUser} onSave={onUserChange} />
 
       <button
@@ -51,6 +59,7 @@ ProfilePage.propTypes = {
     username: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+    createdAt: PropTypes.string,
   }),
   onUserChange: PropTypes.func.isRequired,
 };

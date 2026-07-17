@@ -84,8 +84,13 @@ function PactDetailPage() {
       <Link to="/">← Back to dashboard</Link>
       <h1>Pact Detail</h1>
 
-      <p>Partner A: {pact.partnerA.displayName}</p>
-      <p>Partner B: {pact.partnerB.displayName}</p>
+      {/* only the two partners can load this page, so it's safe to show emails here */}
+      <p>
+        Partner A: {pact.partnerA.displayName} ({pact.partnerA.email})
+      </p>
+      <p>
+        Partner B: {pact.partnerB.displayName} ({pact.partnerB.email})
+      </p>
       <p>Current streak: {pact.currentStreak}</p>
       <p>
         This week: {pact.partnerA.displayName} {pact.thisWeek.partnerA} of{" "}

@@ -5,9 +5,17 @@
 
 .profile-username {
   margin-top: -8px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   color: #777;
   font-size: 15px;
+}
+
+/* sits under the username and carries the gap down to the form */
+.profile-since {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #777;
+  font-size: 14px;
 }
 
 .delete-account-button {

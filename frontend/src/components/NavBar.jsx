@@ -33,7 +33,7 @@ function NavBar({ currentUser, loading, onLogout }) {
             <span className="navbar-separator">|</span>
             <Link to="/profile">Profile</Link>
             <Link to="/">Dashboard</Link>
-            <Link to="/search">Find a Partner</Link>
+            <Link to="/search">Make a Pact</Link>
             <Link to="/log">Log Workout</Link>
             <Link to="/history">History</Link>
             <Link to="/challenges">Challenges</Link>

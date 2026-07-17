@@ -31,9 +31,9 @@ through a REST API and rendered entirely in the browser with React.
 
 - **Login / Register** (`/login`, `/register`): Create an account or sign in;
   authentication is session-based via Passport.
-- **Dashboard** (`/`): Your pacts and their shared streaks, with a link to find a
-  partner if you have none yet.
-- **Find a Partner** (`/search`): Search users by username to start a pact.
+- **Dashboard** (`/`): Your pacts and their shared streaks, with a link to make a
+  pact if you have none yet.
+- **Make a Pact** (`/search`): Search users by username to start a pact.
 - **Profile** (`/profile`): View and edit your profile, or delete your account.
 - **Log Workout** (`/log`): Log a session with a date, one or more exercises
   (sets/reps/weight), and notes; new personal records are flagged on submit.

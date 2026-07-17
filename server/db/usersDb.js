@@ -45,17 +45,28 @@ async function findByEmail(email) {
 // e.g. searching "sam" will match a username like "Samantha_Lifts"
 async function search(term, excludeUserId) {
   const db = await connectDB();
-  return db
-    .collection("users")
-    .find({
-      _id: { $ne: new ObjectId(excludeUserId) },
-      $or: [
-        { username: { $regex: term, $options: "i" } },
-        { displayName: { $regex: term, $options: "i" } },
-      ],
-    })
-    .limit(20)
-    .toArray();
+  return (
+    db
+      .collection("users")
+      .find({
+        _id: { $ne: new ObjectId(excludeUserId) },
+        $or: [
+          { username: { $regex: term, $options: "i" } },
+          { displayName: { $regex: term, $options: "i" } },
+        ],
+      })
+      // anyone can search anyone, so list only the fields a stranger may see —
+      // email stays out of search results and is shown on a pact instead
+      .project({
+        username: 1,
+        displayName: 1,
+        bio: 1,
+        favoriteGym: 1,
+        createdAt: 1,
+      })
+      .limit(20)
+      .toArray()
+  );
 }
 
 // UPDATE a user's profile fields

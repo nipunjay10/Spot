@@ -33,8 +33,8 @@ function DashboardPage() {
 
       {pacts.length === 0 ? (
         <p>
-          No pacts yet. <Link to="/search">Find a partner</Link> to start a
-          pact.
+          No pacts yet. <Link to="/search">Make a pact</Link> with a partner to
+          get started.
         </p>
       ) : (
         <div className="pact-list">

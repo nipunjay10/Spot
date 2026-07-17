@@ -12,6 +12,20 @@
   margin: 4px 0;
 }
 
+.user-card-username {
+  color: #666;
+}
+
+/* a bio is free text, so make sure a long word can't stretch the card */
+.user-card-bio {
+  overflow-wrap: break-word;
+}
+
+.user-card-since {
+  color: #666;
+  font-size: 14px;
+}
+
 .user-card button {
   margin-top: 8px;
   padding: 8px 12px;
