@@ -32,7 +32,9 @@ router.get("/", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
     const status = req.query.status; // optional filter, e.g. ?status=open
-    const filter = status ? { status } : {};
+    // only allow known statuses through, so the query can't smuggle in a mongo operator
+    const allowed = ["open", "accepted", "completed", "failed"];
+    const filter = allowed.includes(status) ? { status: status } : {};
     const challenges = await db
       .collection("challenges")
       .find(filter)
@@ -102,9 +104,12 @@ router.post("/:id/proof", ensureAuthenticated, async (req, res) => {
       return res.status(403).json({ error: "Not your challenge to log" });
     }
 
+    // force a real boolean so the pass/fail check below can't be skewed by a truthy string
+    const completed = req.body.completed === true;
+
     const newEntry = {
       date: req.body.date,
-      completed: req.body.completed,
+      completed: completed,
       notes: req.body.notes || "",
     };
 
@@ -115,7 +120,7 @@ router.post("/:id/proof", ensureAuthenticated, async (req, res) => {
     if (req.body.date === challenge.endDate) {
       const allCompleted = updatedEntries.every((entry) => entry.completed);
       newStatus = allCompleted ? "completed" : "failed";
-    } else if (!req.body.completed) {
+    } else if (!completed) {
       // missing a day early fails it immediately — no point continuing
       newStatus = "failed";
     }
