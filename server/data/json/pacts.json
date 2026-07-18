@@ -1,0 +1,327 @@
+[{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f74"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"weeklyTarget": 2,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.234Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.234Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f75"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"weeklyTarget": 3,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.234Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.234Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f76"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"weeklyTarget": 4,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.234Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.234Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f77"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"weeklyTarget": 2,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f78"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"weeklyTarget": 3,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f79"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"weeklyTarget": 4,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f7a"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"weeklyTarget": 2,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f7b"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"weeklyTarget": 3,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f7c"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"weeklyTarget": 4,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4ec1dbe4c995b5c32f7d"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"weeklyTarget": 2,
+	"status": "active",
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"activatedAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	},
+	"createdAt": {
+		"$date": "2025-07-17T15:48:17.235Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a4f56b423cd0ef4835957"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"weeklyTarget": 2,
+	"status": "active",
+	"activatedAt": {
+		"$date": "2026-07-17T16:24:54.771Z"
+	},
+	"createdAt": {
+		"$date": "2026-07-17T15:50:46.247Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a60b3c72be2b65477cbd0"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"weeklyTarget": 3,
+	"status": "active",
+	"activatedAt": {
+		"$date": "2026-07-17T17:05:06.007Z"
+	},
+	"createdAt": {
+		"$date": "2026-07-17T17:04:51.914Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a60e9c72be2b65477cbd1"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"weeklyTarget": 4,
+	"status": "active",
+	"activatedAt": {
+		"$date": "2026-07-17T17:06:04.506Z"
+	},
+	"createdAt": {
+		"$date": "2026-07-17T17:05:45.638Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a6152c72be2b65477cbd2"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"weeklyTarget": 7,
+	"status": "pending",
+	"activatedAt": null,
+	"createdAt": {
+		"$date": "2026-07-17T17:07:30.555Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a61a2c72be2b65477cbd4"
+	},
+	"partnerA": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"partnerB": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"proposedBy": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"weeklyTarget": 7,
+	"status": "pending",
+	"activatedAt": null,
+	"createdAt": {
+		"$date": "2026-07-17T17:08:50.671Z"
+	}
+}]
+

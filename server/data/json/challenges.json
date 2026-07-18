@@ -1,0 +1,2251 @@
+[{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9630"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-11",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.899Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9631"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-19",
+	"endDate": "2026-07-18",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.899Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9632"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-03",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.899Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9633"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-14",
+	"endDate": "2026-07-17",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.899Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9634"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-11",
+	"endDate": "2026-07-25",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9635"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-07-01",
+	"endDate": "2026-07-23",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9636"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-08",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9637"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-03",
+	"endDate": "2026-07-16",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9638"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-23",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9639"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-02",
+	"endDate": "2026-07-17",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e963a"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-01",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e963b"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-14",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e963c"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-08",
+	"endDate": "2026-07-13",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e963d"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-24",
+	"endDate": "2026-07-19",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e963e"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-15",
+	"endDate": "2026-07-17",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e963f"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-12",
+	"endDate": "2026-07-13",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9640"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-11",
+	"endDate": "2026-07-15",
+	"targetDays": 5,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9641"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-26",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9642"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-04",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9643"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-08",
+	"endDate": "2026-07-19",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9644"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-11",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9645"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-18",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9646"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-30",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9647"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-09",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9648"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-15",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9649"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-16",
+	"endDate": "2026-07-22",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e964a"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-30",
+	"endDate": "2026-07-20",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e964b"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-19",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e964c"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-05",
+	"endDate": "2026-07-18",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e964d"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e964e"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-07-11",
+	"endDate": "2026-07-17",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e964f"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-28",
+	"endDate": "2026-07-18",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9650"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9651"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-10",
+	"endDate": "2026-07-25",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9652"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9653"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-07-08",
+	"endDate": "2026-07-23",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9654"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-26",
+	"endDate": "2026-07-22",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9655"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-20",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9656"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-20",
+	"endDate": "2026-07-19",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9657"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-04",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9658"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-14",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9659"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-27",
+	"endDate": "2026-07-17",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e965a"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-21",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e965b"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-08",
+	"endDate": "2026-07-20",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e965c"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-09",
+	"endDate": "2026-07-25",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e965d"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-13",
+	"endDate": "2026-07-21",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e965e"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-04",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e965f"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-01",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9660"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-08",
+	"endDate": "2026-07-18",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9661"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-07-05",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9662"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-21",
+	"endDate": "2026-07-25",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9663"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-11",
+	"endDate": "2026-07-18",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9664"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-13",
+	"endDate": "2026-07-19",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9665"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-26",
+	"endDate": "2026-07-18",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9666"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-14",
+	"endDate": "2026-07-25",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9667"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-12",
+	"endDate": "2026-07-20",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9668"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-25",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9669"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-04",
+	"endDate": "2026-07-22",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e966a"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-25",
+	"endDate": "2026-07-25",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e966b"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-30",
+	"endDate": "2026-07-25",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e966c"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e966d"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-11",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e966e"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-23",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e966f"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-30",
+	"endDate": "2026-07-14",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9670"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-10",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9671"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-17",
+	"endDate": "2026-07-19",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9672"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-30",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9673"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-12",
+	"endDate": "2026-07-22",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9674"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-13",
+	"endDate": "2026-07-18",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9675"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-24",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9676"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-16",
+	"endDate": "2026-07-13",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9677"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-14",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9678"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-23",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9679"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-22",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e967a"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-21",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e967b"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-16",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e967c"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-01",
+	"endDate": "2026-07-20",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e967d"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-01",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e967e"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-02",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e967f"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-24",
+	"endDate": "2026-07-18",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9680"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9681"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-25",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9682"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-01",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9683"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-11",
+	"endDate": "2026-07-16",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9684"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-22",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9685"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-11",
+	"endDate": "2026-07-25",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9686"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-18",
+	"endDate": "2026-07-22",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9687"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-16",
+	"endDate": "2026-07-25",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9688"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-11",
+	"endDate": "2026-07-17",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9689"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-12",
+	"endDate": "2026-07-22",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e968a"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-15",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e968b"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-29",
+	"endDate": "2026-07-17",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e968c"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-14",
+	"endDate": "2026-07-25",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e968d"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-26",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e968e"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-19",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e968f"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-27",
+	"endDate": "2026-07-17",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9690"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-22",
+	"endDate": "2026-07-18",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9691"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-29",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9692"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-19",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9693"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9694"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-13",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9695"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-18",
+	"endDate": "2026-07-19",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9696"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-03",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9697"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-13",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9698"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-05",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9699"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-05",
+	"endDate": "2026-07-22",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e969a"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-05",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e969b"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-10",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e969c"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-16",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e969d"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-23",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e969e"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-04",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e969f"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-08",
+	"endDate": "2026-07-23",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a0"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-23",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a1"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-03",
+	"endDate": "2026-07-16",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a2"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-21",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a3"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-10",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a4"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-29",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a5"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-20",
+	"endDate": "2026-07-22",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a6"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-26",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a7"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-19",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a8"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-16",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96a9"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-05",
+	"endDate": "2026-07-13",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96aa"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-07-10",
+	"endDate": "2026-07-17",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ab"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-26",
+	"endDate": "2026-07-16",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ac"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-18",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ad"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-07-04",
+	"endDate": "2026-07-19",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ae"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-27",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96af"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-03",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b0"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-04",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b1"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-07",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b2"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-02",
+	"endDate": "2026-07-14",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b3"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-24",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b4"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-17",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b5"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "100 burpees a day",
+	"startDate": "2026-06-13",
+	"endDate": "2026-07-20",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b6"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-15",
+	"endDate": "2026-07-13",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b7"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-28",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b8"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-06-12",
+	"endDate": "2026-07-13",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96b9"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-20",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ba"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-07-05",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96bb"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-01",
+	"endDate": "2026-07-12",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96bc"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"description": "20 pull-ups a day",
+	"startDate": "2026-07-09",
+	"endDate": "2026-07-18",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96bd"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-06-21",
+	"endDate": "2026-07-20",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96be"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-29",
+	"endDate": "2026-07-23",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96bf"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "100 push-ups a day",
+	"startDate": "2026-07-09",
+	"endDate": "2026-07-16",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c0"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-06-23",
+	"endDate": "2026-07-15",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c1"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-11",
+	"endDate": "2026-07-24",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c2"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-07-09",
+	"endDate": "2026-07-21",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c3"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"description": "7-day plank challenge",
+	"startDate": "2026-06-15",
+	"endDate": "2026-07-15",
+	"targetDays": 7,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c4"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"description": "run 2 miles a day",
+	"startDate": "2026-06-30",
+	"endDate": "2026-07-17",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c5"
+	},
+	"creatorId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"description": "50 squats a day",
+	"startDate": "2026-07-06",
+	"endDate": "2026-07-22",
+	"targetDays": 3,
+	"createdAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+}]
+

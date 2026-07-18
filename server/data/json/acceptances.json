@@ -1,0 +1,2073 @@
+[{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c6"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9630"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-11",
+		"2026-06-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c7"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9631"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-19",
+		"2026-06-20",
+		"2026-06-21"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c8"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9632"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-03",
+		"2026-07-04"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96c9"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9633"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-14",
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17",
+		"2026-06-18",
+		"2026-06-19",
+		"2026-06-20"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ca"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9635"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-01",
+		"2026-07-02"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96cb"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9636"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-08",
+		"2026-07-09"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96cc"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9638"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb69"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-07",
+		"2026-07-08",
+		"2026-07-09",
+		"2026-07-10",
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96cd"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9639"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-02",
+		"2026-07-03"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ce"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e963a"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-01",
+		"2026-07-02"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96cf"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e963b"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-06",
+		"2026-07-07",
+		"2026-07-08",
+		"2026-07-09",
+		"2026-07-10",
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d0"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e963d"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-24",
+		"2026-06-25",
+		"2026-06-26"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d1"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e963e"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17",
+		"2026-06-18",
+		"2026-06-19",
+		"2026-06-20"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d2"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e963f"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-12",
+		"2026-06-13",
+		"2026-06-14"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d3"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9640"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-11",
+		"2026-07-12",
+		"2026-07-13",
+		"2026-07-14"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d4"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9646"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-30",
+		"2026-07-01"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d5"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9647"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-09",
+		"2026-07-10"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d6"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9648"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-15",
+		"2026-06-16"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d7"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9649"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-16",
+		"2026-06-17"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d8"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e964a"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-30",
+		"2026-07-01",
+		"2026-07-02"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96d9"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e964b"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-19",
+		"2026-06-20"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96da"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e964c"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-05",
+		"2026-07-06"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96db"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e964d"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-06",
+		"2026-07-07"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96dc"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e964e"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96dd"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e964f"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5d"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-28",
+		"2026-06-29",
+		"2026-06-30"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96de"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9650"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-07",
+		"2026-07-08",
+		"2026-07-09"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96df"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9651"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-10",
+		"2026-07-11"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e0"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9652"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-06",
+		"2026-07-07",
+		"2026-07-08"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e1"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9653"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-08",
+		"2026-07-09"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e2"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9654"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-26",
+		"2026-06-27"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e3"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9655"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-20",
+		"2026-06-21"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e4"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9656"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-20",
+		"2026-06-21",
+		"2026-06-22"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e5"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9659"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-27",
+		"2026-06-28",
+		"2026-06-29"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e6"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e965a"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-21",
+		"2026-06-22"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e7"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e965c"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-09",
+		"2026-07-10",
+		"2026-07-11"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e8"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e965e"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-04",
+		"2026-07-05"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96e9"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9660"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb64"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-08",
+		"2026-07-09"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ea"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9661"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-05",
+		"2026-07-06"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96eb"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9662"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-21",
+		"2026-06-22"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ec"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9663"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ed"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9664"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-13",
+		"2026-06-14",
+		"2026-06-15"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ee"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9665"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-26",
+		"2026-06-27",
+		"2026-06-28"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ef"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9666"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-14",
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17",
+		"2026-06-18",
+		"2026-06-19"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f0"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9667"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-12",
+		"2026-06-13",
+		"2026-06-14",
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f1"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9668"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-25",
+		"2026-06-26",
+		"2026-06-27"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f2"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e966b"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-30",
+		"2026-07-01",
+		"2026-07-02",
+		"2026-07-03",
+		"2026-07-04",
+		"2026-07-05"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f3"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e966d"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb56"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-11",
+		"2026-06-12",
+		"2026-06-13"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f4"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e966f"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-30",
+		"2026-07-01",
+		"2026-07-02",
+		"2026-07-03",
+		"2026-07-04",
+		"2026-07-05"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f5"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9670"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-10",
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f6"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9671"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-17",
+		"2026-06-18"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f7"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9672"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-30",
+		"2026-07-01",
+		"2026-07-02"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f8"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9674"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-13",
+		"2026-06-14",
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17",
+		"2026-06-18",
+		"2026-06-19"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96f9"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9675"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-07",
+		"2026-07-08",
+		"2026-07-09",
+		"2026-07-10",
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96fa"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9677"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-14",
+		"2026-06-15"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96fb"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9679"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb57"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-22",
+		"2026-06-23"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96fc"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e967a"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-07",
+		"2026-07-08",
+		"2026-07-09",
+		"2026-07-10",
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96fd"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e967c"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-01",
+		"2026-07-02",
+		"2026-07-03",
+		"2026-07-04",
+		"2026-07-05",
+		"2026-07-06"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96fe"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e967e"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-02",
+		"2026-07-03",
+		"2026-07-04"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e96ff"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9680"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb62"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-07",
+		"2026-07-08"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9700"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9681"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-25",
+		"2026-06-26"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9701"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9684"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-22",
+		"2026-06-23",
+		"2026-06-24"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9702"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9685"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-11",
+		"2026-07-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9703"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9686"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-18",
+		"2026-06-19",
+		"2026-06-20",
+		"2026-06-21",
+		"2026-06-22",
+		"2026-06-23",
+		"2026-06-24"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9704"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9688"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-11",
+		"2026-06-12"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.9Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9705"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9689"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-12",
+		"2026-06-13",
+		"2026-06-14",
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9706"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e968a"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9707"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e968b"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-29",
+		"2026-06-30"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9708"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e968c"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-14",
+		"2026-06-15",
+		"2026-06-16"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9709"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e968e"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-19",
+		"2026-06-20"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e970a"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9690"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-22",
+		"2026-06-23",
+		"2026-06-24",
+		"2026-06-25",
+		"2026-06-26",
+		"2026-06-27",
+		"2026-06-28"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e970b"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9691"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5e"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-29",
+		"2026-06-30"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e970c"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9692"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-19",
+		"2026-06-20"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e970d"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9693"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5a"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-07",
+		"2026-07-08"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e970e"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9694"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-06",
+		"2026-07-07"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e970f"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9695"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-18",
+		"2026-06-19"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9710"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9696"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-03",
+		"2026-07-04"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9711"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9697"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-13",
+		"2026-06-14"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9712"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9698"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5b"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-05",
+		"2026-07-06"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9713"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e9699"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-05",
+		"2026-07-06",
+		"2026-07-07"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9714"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e969c"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-16",
+		"2026-06-17",
+		"2026-06-18"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9715"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e969e"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-04",
+		"2026-07-05"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9716"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e969f"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-08",
+		"2026-07-09",
+		"2026-07-10"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9717"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96a1"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-03",
+		"2026-07-04",
+		"2026-07-05",
+		"2026-07-06",
+		"2026-07-07",
+		"2026-07-08"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9718"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96a3"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-10",
+		"2026-07-11"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9719"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96a5"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-20",
+		"2026-06-21"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e971a"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96a6"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb66"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-26",
+		"2026-06-27",
+		"2026-06-28"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e971b"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96aa"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-10",
+		"2026-07-11",
+		"2026-07-12",
+		"2026-07-13",
+		"2026-07-14",
+		"2026-07-15"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e971c"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96ab"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-06-26",
+		"2026-06-27",
+		"2026-06-28",
+		"2026-06-29",
+		"2026-06-30",
+		"2026-07-01"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e971d"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96ad"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-04",
+		"2026-07-05"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e971e"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96ae"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb68"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-27",
+		"2026-06-28",
+		"2026-06-29"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e971f"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96af"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-03",
+		"2026-07-04",
+		"2026-07-05"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9720"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96b1"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-07",
+		"2026-07-08",
+		"2026-07-09"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9721"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96b6"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-15",
+		"2026-06-16",
+		"2026-06-17",
+		"2026-06-18",
+		"2026-06-19",
+		"2026-06-20",
+		"2026-06-21"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9722"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96b7"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-28",
+		"2026-06-29"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9723"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96b8"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb65"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-12",
+		"2026-06-13"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9724"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96bc"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb67"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-09",
+		"2026-07-10",
+		"2026-07-11"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9725"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96bd"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb58"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-21",
+		"2026-06-22",
+		"2026-06-23"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9726"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96be"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb63"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-29",
+		"2026-06-30"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9727"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96bf"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-09",
+		"2026-07-10"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9728"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96c0"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb60"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-06-23",
+		"2026-06-24"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e9729"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96c1"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5c"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-07-11",
+		"2026-07-12",
+		"2026-07-13"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e972a"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96c2"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb61"
+	},
+	"status": "failed",
+	"completedDays": [
+		"2026-07-09",
+		"2026-07-10"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e972b"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96c4"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb5f"
+	},
+	"status": "completed",
+	"completedDays": [
+		"2026-06-30",
+		"2026-07-01",
+		"2026-07-02"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a5a7d4e51e0ec23287e972c"
+	},
+	"challengeId": {
+		"$oid": "6a5a7d4e51e0ec23287e96c5"
+	},
+	"userId": {
+		"$oid": "6a54285f252469942edfcb59"
+	},
+	"status": "accepted",
+	"completedDays": [
+		"2026-07-06",
+		"2026-07-07"
+	],
+	"acceptedAt": {
+		"$date": "2026-07-17T19:06:54.901Z"
+	}
+}]
+
