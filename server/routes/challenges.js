@@ -42,9 +42,7 @@ router.post("/", async (req, res) => {
     }
     // a challenge posted in the past would be hidden the moment it's created
     if (startDate < todayString()) {
-      return res
-        .status(400)
-        .json({ error: "Start date can't be in the past" });
+      return res.status(400).json({ error: "Start date can't be in the past" });
     }
     if (endDate < startDate) {
       return res
@@ -90,7 +88,9 @@ router.get("/", async (req, res) => {
     const challenges = await challengesDb.findAll();
 
     // look up every creator once, so we don't hit the users collection per card
-    const creatorIds = [...new Set(challenges.map((c) => c.creatorId.toString()))];
+    const creatorIds = [
+      ...new Set(challenges.map((c) => c.creatorId.toString())),
+    ];
     const creators = await Promise.all(
       creatorIds.map((id) => usersDb.findById(id)),
     );
@@ -194,11 +194,15 @@ router.post("/:id/day", requireValidId, async (req, res) => {
     );
     // only someone who accepted the challenge can log days for it
     if (!acceptance) {
-      return res.status(403).json({ error: "You have not accepted this challenge" });
+      return res
+        .status(403)
+        .json({ error: "You have not accepted this challenge" });
     }
     // once it's resolved the window is closed and nothing more can be logged
     if (acceptance.status !== "accepted") {
-      return res.status(400).json({ error: "This challenge is already finished" });
+      return res
+        .status(400)
+        .json({ error: "This challenge is already finished" });
     }
 
     // the day being marked has to fall inside the challenge window
