@@ -4,7 +4,7 @@ A full-stack workout accountability app built with Node.js, Express, MongoDB
 (native driver), and a React (Hooks) client-side-rendered frontend built with Vite.
 Pair up with a partner, set a weekly workout target, and keep each other honest.
 
-**Live Website:** _TODO: add Render URL after deploy_
+**Live Website:** [Live Website](https://spot-gwig.onrender.com/login)
 
 **Demo Video:** _TODO: add video link_
 
@@ -352,7 +352,7 @@ Northeastern University.
 
 ## Project Submissions
 
-- **Design document:** _TODO: link the design doc_
+- **Design document:** 
 - **Slide deck:** _TODO: link the slides_
 - **Video presentation:** _TODO: link the demo video_
 - **Thumbnail image:** _TODO: add thumbnail_
