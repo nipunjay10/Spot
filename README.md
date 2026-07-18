@@ -4,9 +4,9 @@ A full-stack workout accountability app built with Node.js, Express, MongoDB
 (native driver), and a React (Hooks) client-side-rendered frontend built with Vite.
 Pair up with a partner, set a weekly workout target, and keep each other honest.
 
-**Live Website:** (placeholder — add Render URL)
+**Live Website:** _TODO: add Render URL after deploy_
 
-**Demo Video:** (placeholder — add video link)
+**Demo Video:** _TODO: add video link_
 
 ---
 
@@ -46,7 +46,7 @@ through a REST API and rendered entirely in the browser with React.
 
 ## Key Features
 
-**Sessions & PRs** 
+**Sessions & PRs**
 
 - Full CRUD — log, view, edit, and delete workout sessions
 - Automatic personal-record detection: each logged lift is compared against the
@@ -56,7 +56,7 @@ through a REST API and rendered entirely in the browser with React.
   client-side for instant feedback
 - PR-highlighted display so progress is visible at a glance
 
-**Challenges** 
+**Challenges**
 
 - Full CRUD — create, browse, and delete challenges
 - Lifecycle: `open` -> `accepted` -> `completed` / `failed`
@@ -65,14 +65,14 @@ through a REST API and rendered entirely in the browser with React.
 - Grouped into Open / Accepted / Done sections; Accepted and Done are scoped to
   the logged-in user
 
-**Pacts & Streaks** 
+**Pacts & Streaks**
 
 - Full CRUD on pacts — create with a partner and weekly target, view the pact
-  dashboard, edit the target, dissolve the pact 
+  dashboard, edit the target, dissolve the pact
 - Weekly pact-clearing logic — counts each partner's sessions for the current week
-  against the target and advances or resets the shared streak 
+  against the target and advances or resets the shared streak
 
-**Accounts & Auth** 
+**Accounts & Auth**
 
 - Register / login / logout with Passport (local strategy), session-based
 - Passwords hashed with bcrypt; password hashes never leave the API
@@ -122,12 +122,21 @@ with its own dependencies. It runs against a MongoDB Atlas cluster.
 
    > `.env` is gitignored and never committed.
 
-3. **Seed the database** (1,000+ synthetic records). From `server/`:
+3. **Load the data.** A full snapshot of the database lives in `server/data/` —
+   over 1,000 records across the collections. Import the per-collection JSON
+   backups with `mongoimport`:
 
    ```bash
-   npm run seed:sessions      # 1,000 sessions
-   npm run seed:challenges    # 150 challenges
+   mongoimport --uri "$MONGO_URI/spot" --collection users        --jsonArray --file server/data/json/users.json
+   mongoimport --uri "$MONGO_URI/spot" --collection sessions     --jsonArray --file server/data/json/sessions.json
+   mongoimport --uri "$MONGO_URI/spot" --collection challenges   --jsonArray --file server/data/json/challenges.json
+   mongoimport --uri "$MONGO_URI/spot" --collection pacts        --jsonArray --file server/data/json/pacts.json
+   mongoimport --uri "$MONGO_URI/spot" --collection acceptances  --jsonArray --file server/data/json/acceptances.json
    ```
+
+   > For an exact copy (indexes and all) you can instead restore the binary dump:
+   > `mongorestore --uri "$MONGO_URI" --nsInclude "spot.*" --drop server/data/dump`.
+   > See `server/data/README.md` for details.
 
 4. **Start both servers** (two terminals):
 
@@ -143,12 +152,70 @@ with its own dependencies. It runs against a MongoDB Atlas cluster.
    The frontend proxies `/api` requests to the backend on port 3001. Register an
    account and start logging workouts.
 
-   > **Render / production:** set `MONGO_URI` and `SESSION_SECRET` in Render's
-   > environment variables dashboard rather than committing a `.env`.
+---
+
+## Deployment (Render)
+
+The Express server serves the built React app (`frontend/dist`) and the API from
+one process, so Spot deploys as a **single Render Web Service** pointed at this
+GitHub repo.
+
+- **Build Command:**
+
+  ```bash
+  cd frontend && npm install && npm run build && cd ../server && npm install
+  ```
+
+- **Start Command:**
+
+  ```bash
+  cd server && npm start
+  ```
+
+- **Environment variables** (set in Render's dashboard, not committed):
+
+  ```
+  MONGO_URI=your-mongodb-atlas-connection-string
+  SESSION_SECRET=a-long-random-string
+  NODE_ENV=production
+  ```
+
+  > Don't set `PORT` — Render provides it automatically. `NODE_ENV=production`
+  > turns on secure session cookies.
+
+- **MongoDB Atlas:** under Network Access, allow connections from anywhere
+  (`0.0.0.0/0`) so Render can reach the cluster.
 
 ---
 
 ## Screenshots
+
+> _TODO: add one screenshot per page to the `images/` folder using the filenames
+> below (they're already linked here, so the images render once added)._
+
+### Login
+
+![Login page](./images/login.png)
+
+### Register
+
+![Register page](./images/register.png)
+
+### Dashboard (Pacts)
+
+![Dashboard page](./images/dashboard.png)
+
+### Make a Pact (Partner Search)
+
+![Partner search page](./images/partner-search.png)
+
+### Pact Detail
+
+![Pact detail page](./images/pact-detail.png)
+
+### Profile
+
+![Profile page](./images/profile.png)
 
 ### Log Workout
 
@@ -162,8 +229,6 @@ with its own dependencies. It runs against a MongoDB Atlas cluster.
 
 ![Challenges page](./images/challenges.png)
 
-> (placeholder — add screenshots to `images/` and update paths)
-
 ---
 
 ## Project Structure
@@ -171,32 +236,33 @@ with its own dependencies. It runs against a MongoDB Atlas cluster.
 ```
 Spot/
 ├── server/
-│   ├── server.js               # Express entry point; mounts routes + auth
+│   ├── server.js               # Express entry point; mounts routes + serves the built frontend
 │   ├── db/
 │   │   ├── connection.js       # Single cached MongoDB connection
 │   │   ├── usersDb.js          # Users collection access
-│   │   └── pactsDb.js          # Pacts collection access
+│   │   ├── pactsDb.js          # Pacts collection access
+│   │   ├── sessionCountsDb.js  # Weekly session counts (for streaks)
+│   │   ├── challengesDb.js     # Challenges collection access
+│   │   └── acceptancesDb.js    # Per-user challenge acceptances
 │   ├── auth/
 │   │   └── passport.js         # Passport local strategy + (de)serialize
+│   ├── lib/
+│   │   └── streak.js           # Week-math helpers + streak computation
 │   ├── middleware/
-│   │   └── ensureAuthenticated.js
+│   │   ├── ensureAuthenticated.js
+│   │   └── requireValidId.js   # Validates :id params as ObjectIds
 │   ├── routes/
 │   │   ├── auth.js             # /api/auth (register/login/logout/me)
-│   │   ├── users.js            # /api/users
-│   │   ├── pacts.js            # /api/pacts
+│   │   ├── users.js            # /api/users (search + profile CRUD)
+│   │   ├── pacts.js            # /api/pacts (CRUD + weekly streak logic)
 │   │   ├── sessions.js         # /api/sessions (CRUD + PR detection)
-│   │   ├── challenges.js       # /api/challenges (CRUD + lifecycle)
-│   │   ├── pactClearing.js     # evaluatePact — weekly streak logic
-│   │   └── streaks.js          # /api/streaks (exposes pactClearing)
-│   └── seed/
-│       ├── loadSessions.js
-│       ├── loadChallenges.js
-│       └── data/               # Mockaroo raw JSON
+│   │   └── challenges.js       # /api/challenges (CRUD + lifecycle)
+│   └── data/                   # Full database snapshot (BSON dump + JSON backups)
 ├── frontend/
 │   ├── vite.config.js
 │   └── src/
 │       ├── App.jsx             # Router + auth state
-│       ├── components/         # NavBar, Layout, ProtectedRoute, cards, forms
+│       ├── components/         # NavBar, Layout, ProtectedRoute, cards, sections, forms
 │       └── pages/              # Dashboard, Login, Register, Profile,
 │                               # PartnerSearch, PactDetail, LogWorkout,
 │                               # History, Challenges
@@ -215,61 +281,52 @@ not the request body.
 
 ### Auth — `/api/auth`
 
-| Method | Path | Description |
-| --- | --- | --- |
+| Method | Path                 | Description                          |
+| ------ | -------------------- | ------------------------------------ |
 | `POST` | `/api/auth/register` | Register a new user and log them in. |
-| `POST` | `/api/auth/login` | Log in. |
-| `POST` | `/api/auth/logout` | Log out and end the session. |
-| `GET` | `/api/auth/me` | Get the currently logged-in user. |
+| `POST` | `/api/auth/login`    | Log in.                              |
+| `POST` | `/api/auth/logout`   | Log out and end the session.         |
+| `GET`  | `/api/auth/me`       | Get the currently logged-in user.    |
 
 ### Sessions — `/api/sessions`
 
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` | `/api/sessions` | List the logged-in user's sessions (newest first). |
-| `POST` | `/api/sessions` | Log a session; each exercise is flagged `isPR` if it beats the user's prior best. |
-| `GET` | `/api/sessions/:id` | Get one session by id. |
-| `PUT` | `/api/sessions/:id` | Update a session. |
-| `DELETE` | `/api/sessions/:id` | Delete a session. |
+| Method   | Path                | Description                                                                       |
+| -------- | ------------------- | --------------------------------------------------------------------------------- |
+| `GET`    | `/api/sessions`     | List the logged-in user's sessions (newest first).                                |
+| `POST`   | `/api/sessions`     | Log a session; each exercise is flagged `isPR` if it beats the user's prior best. |
+| `GET`    | `/api/sessions/:id` | Get one session by id.                                                            |
+| `PUT`    | `/api/sessions/:id` | Update a session.                                                                 |
+| `DELETE` | `/api/sessions/:id` | Delete a session.                                                                 |
 
 ### Challenges — `/api/challenges`
 
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` | `/api/challenges` | List challenges (optional `?status=open\|accepted\|completed\|failed`). |
-| `POST` | `/api/challenges` | Create a challenge (creator = logged-in user). |
-| `PUT` | `/api/challenges/:id/accept` | Accept an open challenge. |
-| `POST` | `/api/challenges/:id/proof` | Log a daily proof entry; resolves on the end date or fails on a missed day. |
-| `DELETE` | `/api/challenges/:id` | Delete a challenge. |
-
-### Streaks — `/api/streaks`
-
-| Method | Path | Description |
-| --- | --- | --- |
-| `POST` | `/api/streaks/:pactId/evaluate` | Count both partners' sessions for the current week against the pact target and advance or reset the shared streak. |
+| Method   | Path                         | Description                                                                              |
+| -------- | ---------------------------- | ---------------------------------------------------------------------------------------- |
+| `GET`    | `/api/challenges`            | List challenges, each enriched with the creator and the logged-in user's own acceptance. |
+| `POST`   | `/api/challenges`            | Create a challenge (creator = logged-in user).                                           |
+| `PUT`    | `/api/challenges/:id/accept` | Accept an open challenge (creates the caller's acceptance).                              |
+| `POST`   | `/api/challenges/:id/day`    | Toggle a day done on the caller's acceptance; completing the target resolves it.         |
+| `DELETE` | `/api/challenges/:id`        | Delete a challenge (creator only, before anyone accepts).                                |
 
 ### Pacts — `/api/pacts`
 
-> _Verify against `server/routes/pacts.js` (Khush's) — paths below reflect the
-> intended design._
-
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` | `/api/pacts` | List the logged-in user's pacts. |
-| `POST` | `/api/pacts` | Create a pact with a partner and weekly target. |
-| `GET` | `/api/pacts/:id` | Get one pact. |
-| `PUT` | `/api/pacts/:id` | Update a pact's target. |
-| `DELETE` | `/api/pacts/:id` | Dissolve a pact. |
+| Method   | Path                    | Description                                                                                                |
+| -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `GET`    | `/api/pacts`            | List the logged-in user's pacts, each with the partner, the current shared streak, and this week's counts. |
+| `POST`   | `/api/pacts`            | Propose a pact to a partner with a weekly target.                                                          |
+| `GET`    | `/api/pacts/:id`        | Get one pact.                                                                                              |
+| `PUT`    | `/api/pacts/:id`        | Update a pact's weekly target.                                                                             |
+| `PUT`    | `/api/pacts/:id/accept` | Accept a pact proposed to you (activates the pact).                                                        |
+| `DELETE` | `/api/pacts/:id`        | Dissolve a pact.                                                                                           |
 
 ### Users — `/api/users`
 
-> _Verify against `server/routes/users.js` (Khush's)._
-
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` | `/api/users/search?q=<term>` | Search users by username. |
-| `PUT` | `/api/users/:id` | Update a user's profile. |
-| `DELETE` | `/api/users/:id` | Delete a user account. |
+| Method   | Path                       | Description                                                   |
+| -------- | -------------------------- | ------------------------------------------------------------- |
+| `GET`    | `/api/users?search=<term>` | Search users by username or display name (excludes yourself). |
+| `GET`    | `/api/users/:id`           | Get one user's public profile.                                |
+| `PUT`    | `/api/users/:id`           | Update your own profile.                                      |
+| `DELETE` | `/api/users/:id`           | Delete your own account.                                      |
 
 ---
 
@@ -295,10 +352,10 @@ Northeastern University.
 
 ## Project Submissions
 
-- **Design document:** (placeholder — link the design doc)
-- **Slide deck:** (placeholder — link the slides)
-- **Video presentation:** (placeholder — link the demo video)
-- **Thumbnail image:** (placeholder — add thumbnail)
+- **Design document:** _TODO: link the design doc_
+- **Slide deck:** _TODO: link the slides_
+- **Video presentation:** _TODO: link the demo video_
+- **Thumbnail image:** _TODO: add thumbnail_
 
 ---
 
@@ -309,10 +366,11 @@ Claude Opus 4.8 model.
 
 1. **Seed data generation.** Sample data for the sessions and challenges collections
    was generated with [Mockaroo](https://www.mockaroo.com/). Claude was used to help write
-   the Node loader scripts that shape the flat Mockaroo rows into the nested document
+   the Node loader scripts that shaped the flat Mockaroo rows into the nested document
    structure the app expects (wrapping session exercise fields into an `exercises`
    array, converting id strings to native MongoDB `ObjectId`s, and setting
-   `accepterId` to `null` for unaccepted challenges).
+   `accepterId` to `null` for unaccepted challenges). The final database now ships as
+   a snapshot in `server/data/` (see that folder's README).
 
 2. **Scaffolding and debugging.** Claude was used as a coding aid to scaffold the
    sessions and challenges routes, the PR-detection aggregation pipeline, the
