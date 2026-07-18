@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import PactCard from "../components/PactCard";
+import PactSection from "../components/PactSection";
 import "./DashboardPage.css";
 
 function DashboardPage() {
@@ -39,23 +39,6 @@ function DashboardPage() {
     (pact) => pact.status === "pending" && pact.role === "invited",
   );
 
-  function PactSection({ title, pacts, emptyMessage }) {
-    return (
-      <section className="pact-section">
-        <h2>{title}</h2>
-        {pacts.length === 0 ? (
-          <p>{emptyMessage}</p>
-        ) : (
-          <div className="pact-list">
-            {pacts.map((pact) => (
-              <PactCard key={pact._id} pact={pact} onChanged={loadPacts} />
-            ))}
-          </div>
-        )}
-      </section>
-    );
-  }
-
   return (
     <div className="dashboard-page">
       <h1>Pacts</h1>
@@ -71,18 +54,21 @@ function DashboardPage() {
             title="Active"
             pacts={active}
             emptyMessage="No active pacts yet."
+            onChanged={loadPacts}
           />
 
           <PactSection
             title="Proposed by you"
             pacts={outgoing}
             emptyMessage="You haven't proposed any pacts."
+            onChanged={loadPacts}
           />
 
           <PactSection
             title="Proposed to you"
             pacts={incoming}
             emptyMessage="No one has proposed a pact to you."
+            onChanged={loadPacts}
           />
         </>
       )}
