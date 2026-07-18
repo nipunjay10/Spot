@@ -87,35 +87,45 @@ router.get("/", async (req, res) => {
     const today = todayString();
     const challenges = await challengesDb.findAll();
 
-    // look up every creator once, so we don't hit the users collection per card
+    // look up every creator in one query, so we don't hit the users collection
+    // per card
     const creatorIds = [
       ...new Set(challenges.map((c) => c.creatorId.toString())),
     ];
-    const creators = await Promise.all(
-      creatorIds.map((id) => usersDb.findById(id)),
-    );
+    const creators = await usersDb.findByIds(creatorIds);
     // map creator id -> sanitized profile for a quick lookup below
     const creatorById = {};
     creators.forEach((user) => {
-      if (user) creatorById[user._id.toString()] = usersDb.sanitize(user);
+      creatorById[user._id.toString()] = usersDb.sanitize(user);
     });
+
+    // pull all this user's acceptances in one query and key them by challenge,
+    // so the loop below reads from memory instead of hitting the database once
+    // per challenge (that per-challenge lookup was slow against a remote db)
+    const myAcceptances = await acceptancesDb.findByUser(myId);
+    const acceptanceByChallenge = {};
+    myAcceptances.forEach((a) => {
+      acceptanceByChallenge[a.challengeId.toString()] = a;
+    });
+
+    // resolve any still-open acceptance whose window has closed, saving each
+    // once. these writes run together rather than one after another.
+    const toResolve = challenges.filter((challenge) => {
+      const a = acceptanceByChallenge[challenge._id.toString()];
+      return a && a.status === "accepted" && challenge.endDate < today;
+    });
+    await Promise.all(
+      toResolve.map(async (challenge) => {
+        const a = acceptanceByChallenge[challenge._id.toString()];
+        const status = resolveStatus(a, challenge);
+        acceptanceByChallenge[challenge._id.toString()] =
+          await acceptancesDb.update(a._id, { status });
+      }),
+    );
 
     const enriched = [];
     for (const challenge of challenges) {
-      let myAcceptance = await acceptancesDb.findForUserAndChallenge(
-        myId,
-        challenge._id,
-      );
-
-      // a still-open acceptance past its end date gets resolved and saved once
-      if (
-        myAcceptance &&
-        myAcceptance.status === "accepted" &&
-        challenge.endDate < today
-      ) {
-        const status = resolveStatus(myAcceptance, challenge);
-        myAcceptance = await acceptancesDb.update(myAcceptance._id, { status });
-      }
+      const myAcceptance = acceptanceByChallenge[challenge._id.toString()];
 
       // an expired challenge you never accepted is dead to everyone — hide it
       if (!myAcceptance && challenge.endDate < today) {

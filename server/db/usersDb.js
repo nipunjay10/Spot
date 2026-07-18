@@ -27,6 +27,16 @@ async function findById(id) {
   return db.collection("users").findOne({ _id: new ObjectId(id) });
 }
 
+// READ many users by their _ids in one query (avoids a lookup per id)
+async function findByIds(ids) {
+  const db = await connectDB();
+  const objectIds = ids.map((id) => new ObjectId(id));
+  return db
+    .collection("users")
+    .find({ _id: { $in: objectIds } })
+    .toArray();
+}
+
 // READ a user by username (used for login)
 async function findByUsername(username) {
   const db = await connectDB();
@@ -94,6 +104,7 @@ async function remove(id) {
 export const usersDb = {
   create,
   findById,
+  findByIds,
   findByUsername,
   findByEmail,
   search,
