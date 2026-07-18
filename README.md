@@ -4,9 +4,16 @@ A full-stack workout accountability app built with Node.js, Express, MongoDB
 (native driver), and a React (Hooks) client-side-rendered frontend built with Vite.
 Pair up with a partner, set a weekly workout target, and keep each other honest.
 
-**Live Website:** _TODO: add Render URL after deploy_
+**Live Website:** [https://spot-gwig.onrender.com/](https://spot-gwig.onrender.com/)
 
 **Demo Video:** _TODO: add video link_
+
+**Try it:** log in with the demo account **`liftlarry`** / **`demospot123`** to explore
+an account already full of pacts, streaks, workout history, and challenges — or
+register your own account to start fresh.
+
+> The live site is on Render's free tier, so the first request after a period of
+> inactivity may take 30–60 seconds to wake the server.
 
 ---
 
@@ -163,8 +170,11 @@ GitHub repo.
 - **Build Command:**
 
   ```bash
-  cd frontend && npm install && npm run build && cd ../server && npm install
+  cd frontend && npm install --include=dev && npm run build && cd ../server && npm install --omit=dev
   ```
+
+  > `--include=dev` is needed because `NODE_ENV=production` (below) tells npm to
+  > skip devDependencies, but the frontend build tool (Vite) lives there.
 
 - **Start Command:**
 
