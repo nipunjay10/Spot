@@ -325,7 +325,7 @@ Northeastern University.
 - **Design document:** [Design Document - Project 3.pdf](<./submission materials/Design Document - Project 3.pdf>)
 - **Slide deck:** [Spot-Project3-Slidedeck.pptx](<./submission materials/Spot-Project3-Slidedeck.pptx>)
 - **Video presentation:** _TODO: link the demo video_
-- **Thumbnail image:** _TODO: add thumbnail_
+- **Thumbnail image:** ![Thumbnail](./images/thumbnail.png)
 
 ---
 
