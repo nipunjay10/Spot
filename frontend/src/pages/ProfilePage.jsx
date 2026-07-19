@@ -1,38 +1,11 @@
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "../components/ProfileForm";
-import ChallengeSection from "../components/ChallengeSection";
 import { memberSince } from "../lib/formatDate";
 import "./ProfilePage.css";
 
 function ProfilePage({ currentUser, onUserChange }) {
   const navigate = useNavigate();
-
-  // the challenges this user has accepted, split into accepted vs finished
-  const [challenges, setChallenges] = useState([]);
-
-  // the same feed the Challenges page uses; we keep only the ones you accepted
-  async function loadChallenges() {
-    const res = await fetch("/api/challenges");
-    if (res.ok) {
-      const data = await res.json();
-      setChallenges(data.filter((c) => c.myAcceptance));
-    }
-  }
-
-  useEffect(() => {
-    loadChallenges();
-  }, []);
-
-  const accepted = challenges.filter(
-    (c) => c.myAcceptance.status === "accepted",
-  );
-  const done = challenges.filter(
-    (c) =>
-      c.myAcceptance.status === "completed" ||
-      c.myAcceptance.status === "failed",
-  );
 
   async function handleDeleteAccount() {
     // ask for confirmation since deleting an account can't be undone
@@ -67,24 +40,6 @@ function ProfilePage({ currentUser, onUserChange }) {
       )}
 
       <ProfileForm user={currentUser} onSave={onUserChange} />
-
-      <section className="profile-challenges">
-        <h2>My challenges</h2>
-        <ChallengeSection
-          title="Accepted"
-          challenges={accepted}
-          emptyMessage="Nothing accepted yet."
-          currentUser={currentUser}
-          onChanged={loadChallenges}
-        />
-        <ChallengeSection
-          title="Done"
-          challenges={done}
-          emptyMessage="No finished challenges."
-          currentUser={currentUser}
-          onChanged={loadChallenges}
-        />
-      </section>
 
       <button
         type="button"
