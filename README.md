@@ -141,9 +141,9 @@ with its own dependencies. It runs against a MongoDB Atlas cluster.
    mongoimport --uri "$MONGO_URI/spot" --collection acceptances  --jsonArray --file server/data/json/acceptances.json
    ```
 
-   > For an exact copy (indexes and all) you can instead restore the binary dump:
+   > For an exact copy (indexes and all) you can instead restore the binary dump
+   > in `server/data/dump/`:
    > `mongorestore --uri "$MONGO_URI" --nsInclude "spot.*" --drop server/data/dump`.
-   > See `server/data/README.md` for details.
 
 4. **Start both servers** (two terminals):
 
@@ -161,47 +161,7 @@ with its own dependencies. It runs against a MongoDB Atlas cluster.
 
 ---
 
-## Deployment (Render)
-
-The Express server serves the built React app (`frontend/dist`) and the API from
-one process, so Spot deploys as a **single Render Web Service** pointed at this
-GitHub repo.
-
-- **Build Command:**
-
-  ```bash
-  cd frontend && npm install --include=dev && npm run build && cd ../server && npm install --omit=dev
-  ```
-
-  > `--include=dev` is needed because `NODE_ENV=production` (below) tells npm to
-  > skip devDependencies, but the frontend build tool (Vite) lives there.
-
-- **Start Command:**
-
-  ```bash
-  cd server && npm start
-  ```
-
-- **Environment variables** (set in Render's dashboard, not committed):
-
-  ```
-  MONGO_URI=your-mongodb-atlas-connection-string
-  SESSION_SECRET=a-long-random-string
-  NODE_ENV=production
-  ```
-
-  > Don't set `PORT` — Render provides it automatically. `NODE_ENV=production`
-  > turns on secure session cookies.
-
-- **MongoDB Atlas:** under Network Access, allow connections from anywhere
-  (`0.0.0.0/0`) so Render can reach the cluster.
-
----
-
 ## Screenshots
-
-> _TODO: add one screenshot per page to the `images/` folder using the filenames
-> below (they're already linked here, so the images render once added)._
 
 ### Login
 
@@ -380,7 +340,7 @@ Claude Opus 4.8 model.
    structure the app expects (wrapping session exercise fields into an `exercises`
    array, converting id strings to native MongoDB `ObjectId`s, and setting
    `accepterId` to `null` for unaccepted challenges). The final database now ships as
-   a snapshot in `server/data/` (see that folder's README).
+   a snapshot in `server/data/`.
 
 2. **Scaffolding and debugging.** Claude was used as a coding aid to scaffold the
    sessions and challenges routes, the PR-detection aggregation pipeline, the
