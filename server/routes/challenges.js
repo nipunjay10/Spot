@@ -81,6 +81,9 @@ router.post("/", async (req, res) => {
 // profile and this user's own acceptance (if any). Expired challenges the user
 // never accepted are dropped, and any accepted challenge whose window has closed
 // is resolved to completed/failed on the way out.
+
+// This get is very long and performs a write operation. These are not technically bugs in the code
+// but maybe it would be best to have a separate smaller method for the write which the get can call?
 router.get("/", async (req, res) => {
   try {
     const myId = req.user._id.toString();
