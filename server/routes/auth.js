@@ -14,6 +14,7 @@ import { usersDb } from "../db/usersDb.js";
 const router = express.Router();
 
 // REGISTER a new user, then log them in automatically
+// I really like how you checked existing usernames before adding, my team forgot to do that! 
 router.post("/register", async (req, res) => {
   try {
     // extract required fields from request body
