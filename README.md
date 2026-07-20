@@ -163,6 +163,8 @@ with its own dependencies. It runs against a MongoDB Atlas cluster.
 
 ## Screenshots
 
+<-- This is less of a technical critique, but I think that adding some color / styling with Bootstrap could have made the app
+more engaging and interesting. Also, you might want to update/set the favicon for the site so its not the deault gray globe. -->
 ### Login
 
 ![Login page](./images/login.png)
