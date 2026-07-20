@@ -30,6 +30,8 @@ router.get("/:id", requireValidId, async (req, res) => {
 });
 
 // UPDATE a profile — only the logged-in user can edit their own profile
+// this update does not enforce uniqueness, so even though a user must create a profile with a unique email/username,
+// they can change it to an existing one. I would recommend adding the same checks that the register path has.
 router.put("/:id", requireValidId, async (req, res) => {
   try {
     if (req.params.id !== req.user._id.toString()) {
