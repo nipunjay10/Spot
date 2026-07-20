@@ -79,6 +79,8 @@ router.get("/:id", ensureAuthenticated, async (req, res) => {
 });
 
 // UPDATE a session
+// It doesn't look like this update prevents a clash similar to how the CREATE does. This means you can edit a sessions date
+// to have two on the same day.
 router.put("/:id", ensureAuthenticated, async (req, res) => {
   try {
     const db = await connectDB();
