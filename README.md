@@ -6,6 +6,7 @@ Pair up with a partner, set a weekly workout target, and keep each other honest.
 
 **Live Website:** [https://spot-gwig.onrender.com/](https://spot-gwig.onrender.com/)
 
+<-- The demo video links are missing -->
 **Demo Video:** _TODO: add video link_
 
 **Try it:** log in with the demo account **`liftlarry`** / **`demospot123`** to explore
