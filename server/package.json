@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
+    "study:seed": "node data/study-seed/seedStudyData.js",
+    "study:clean": "node data/study-seed/seedStudyData.js --clean",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
