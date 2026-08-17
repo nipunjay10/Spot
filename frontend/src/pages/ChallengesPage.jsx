@@ -171,6 +171,9 @@ function ChallengesPage({ currentUser }) {
       )}
 
       {creating && (
+      // it looks like all of your submit buttons stay enabled as a request is being handled. This could lead to unexpected behavior if a user gets
+      // frustrated and spams a submit or delete button before each request processes. Disabling the button until the request completes could be
+      // beneficial.
         <form className={styles.challengeCreateForm} onSubmit={handleCreate}>
           <h2 tabIndex={-1} ref={createHeadingRef}>
             Post a challenge
