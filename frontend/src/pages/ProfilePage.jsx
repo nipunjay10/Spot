@@ -17,6 +17,7 @@ function ProfilePage({ currentUser, onUserChange }) {
     await fetch(`/api/users/${currentUser._id}`, { method: "DELETE" });
     // clear the app-wide user, then back to the homepage — the account is gone,
     // so a login form is the one page they can't use
+    // I would recommend error handling here so if the DELETE fails, the user isn't logged out and is instead shown a message.
     onUserChange(null);
     navigate("/");
   }
