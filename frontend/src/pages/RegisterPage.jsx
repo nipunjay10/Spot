@@ -55,6 +55,7 @@ function RegisterPage({ onRegister }) {
           type="text"
           autoComplete="username"
           value={username}
+          {/*  You don't do any trimming/cleaning it appears, so 'username' and 'username ' can both exist? */}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
