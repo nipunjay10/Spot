@@ -5,7 +5,7 @@ import { usersDb } from "../db/usersDb.js";
 import { requireValidId } from "../middleware/requireValidId.js";
 
 const router = express.Router();
-
+// It looks like you use auth middleware in your other routes, but not here. It is still enforced, but perhaps the code is just incosistent in where it is enforced
 // today as a plain YYYY-MM-DD string, so it compares directly against the
 // startDate/endDate strings a challenge stores (both are zero-padded ISO dates)
 function todayString() {
