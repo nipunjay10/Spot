@@ -13,6 +13,9 @@ import LogWorkoutPage from "./pages/LogWorkoutPage";
 import HistoryPage from "./pages/HistoryPage";
 import ChallengesPage from "./pages/ChallengesPage";
 
+// Overall, this is a great application that I would use personally and I appreciate the useability edits the authors have made since P3.
+// Keyboard navigation works as expected and there are no issues reported by Axe Devtools. I left a few comments related to displaying warnings and
+// code consistency. Great work!
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   // check if there is a logged in session yet: used by Navbar, protectedroute and implicity to every ro
