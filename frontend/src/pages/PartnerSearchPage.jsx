@@ -37,6 +37,8 @@ function PartnerSearchPage() {
       const data = await res.json();
       setResults(data);
     }
+    // I would recommend adding an else {} here to display text if there are no users found, so that way users don't think there is an error if there's
+    // no results.
   }
 
   return (
